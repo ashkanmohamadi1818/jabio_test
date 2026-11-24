@@ -1,0 +1,138 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default-deny safety net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    function isSignedIn() { return request.auth != null; }
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+    function isValidEmail(val) {
+      return val is string && val.size() >= 3 && val.size() <= 160 && val.matches('^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$');
+    }
+    function isOptionalString(data, field, maxLen) {
+      return !(field in data) || (data[field] is string && data[field].size() <= maxLen);
+    }
+
+    function isValidUserProfile(data, userId) {
+      return data.keys().hasAll([
+          'uid', 'email', 'emailVerified', 'displayName', 'authProvider',
+          'accountType', 'preferredCity', 'preferredLang', 'createdAt', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'uid', 'email', 'emailVerified', 'phone', 'phoneVerified',
+          'displayName', 'photoURL', 'authProvider', 'accountType',
+          'preferredCity', 'preferredCategory', 'preferredLang',
+          'organizationName', 'roleTitle', 'industry', 'branchCount',
+          'createdAt', 'updatedAt'
+        ])
+        && data.uid == userId
+        && isValidEmail(data.email)
+        && data.emailVerified is bool
+        && isOptionalString(data, 'phone', 32)
+        && (!('phoneVerified' in data) || data.phoneVerified is bool)
+        && data.displayName is string && data.displayName.size() <= 80
+        && isOptionalString(data, 'photoURL', 500)
+        && data.authProvider in ['google', 'password']
+        && data.accountType in ['personal', 'organization']
+        && data.preferredCity is string && data.preferredCity.size() >= 1 && data.preferredCity.size() <= 40
+        && isOptionalString(data, 'preferredCategory', 40)
+        && data.preferredLang in ['fa', 'en']
+        && isOptionalString(data, 'organizationName', 100)
+        && isOptionalString(data, 'roleTitle', 80)
+        && isOptionalString(data, 'industry', 80)
+        && isOptionalString(data, 'branchCount', 32)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidSavedAnalysis(data, userId, analysisId) {
+      return data.keys().hasAll([
+          'id', 'ownerId', 'name', 'q', 'city', 'type', 'method', 'createdAt', 'updatedAt'
+        ])
+        && data.keys().hasOnly([
+          'id', 'ownerId', 'name', 'q', 'city', 'type', 'score', 'method', 'notes', 'createdAt', 'updatedAt'
+        ])
+        && isValidId(analysisId)
+        && data.id == analysisId
+        && data.ownerId == userId
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 80
+        && data.q is string && data.q.size() >= 5 && data.q.size() <= 600
+        && data.city is string && data.city.size() >= 1 && data.city.size() <= 40
+        && data.type is string && data.type.size() >= 1 && data.type.size() <= 40
+        && (!('score' in data) || data.score == null || (data.score is number && data.score >= 0 && data.score <= 100))
+        && data.method is string && data.method.size() >= 1 && data.method.size() <= 64
+        && isOptionalString(data, 'notes', 500)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Strictly private user profile documents (PII isolated to owner only, no list)
+    match /users/{userId} {
+      allow get: if isOwner(userId);
+      allow list: if false;
+
+      allow create: if isVerifiedUser()
+        && isOwner(userId)
+        && isValidId(userId)
+        && isValidUserProfile(incoming(), userId)
+        && incoming().email == request.auth.token.email
+        && incoming().emailVerified == request.auth.token.email_verified
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isVerifiedUser()
+        && isOwner(userId)
+        && isValidUserProfile(incoming(), userId)
+        && incoming().uid == existing().uid
+        && incoming().email == existing().email
+        && incoming().authProvider == existing().authProvider
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'displayName', 'photoURL', 'phone', 'phoneVerified',
+          'accountType', 'preferredCity', 'preferredCategory', 'preferredLang',
+          'organizationName', 'roleTitle', 'industry', 'branchCount', 'updatedAt'
+        ]);
+
+      allow delete: if isVerifiedUser() && isOwner(userId);
+
+      // Per-user saved location analyses
+      match /analyses/{analysisId} {
+        allow get: if isOwner(userId) && existing().ownerId == request.auth.uid;
+        allow list: if isOwner(userId) && existing().ownerId == request.auth.uid;
+
+        allow create: if isVerifiedUser()
+          && isOwner(userId)
+          && isValidSavedAnalysis(incoming(), userId, analysisId)
+          && incoming().createdAt == request.time
+          && incoming().updatedAt == request.time;
+
+        allow update: if isVerifiedUser()
+          && isOwner(userId)
+          && isValidSavedAnalysis(incoming(), userId, analysisId)
+          && incoming().id == existing().id
+          && incoming().ownerId == existing().ownerId
+          && incoming().createdAt == existing().createdAt
+          && incoming().updatedAt == request.time
+          && (
+            incoming().diff(existing()).affectedKeys().hasOnly(['name', 'notes', 'updatedAt'])
+            || incoming().diff(existing()).affectedKeys().hasOnly(['name', 'score', 'method', 'notes', 'updatedAt'])
+          );
+
+        allow delete: if isVerifiedUser() && isOwner(userId) && existing().ownerId == request.auth.uid;
+      }
+    }
+  }
+}

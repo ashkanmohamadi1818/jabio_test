@@ -1,0 +1,80 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Private adaptive profile for an authenticated Jabio user supporting personal and organizational modes.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID matching the document ID" },
+        "email": { "type": "string", "format": "email" },
+        "emailVerified": { "type": "boolean" },
+        "phone": { "type": "string", "description": "Optional normalized Iranian mobile number (+989xxxxxxxxx)" },
+        "phoneVerified": { "type": "boolean" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "authProvider": { "type": "string", "enum": ["google", "password"] },
+        "accountType": { "type": "string", "enum": ["personal", "organization"] },
+        "preferredCity": { "type": "string" },
+        "preferredCategory": { "type": "string" },
+        "preferredLang": { "type": "string", "enum": ["fa", "en"] },
+        "organizationName": { "type": "string" },
+        "roleTitle": { "type": "string" },
+        "industry": { "type": "string" },
+        "branchCount": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "uid",
+        "email",
+        "emailVerified",
+        "displayName",
+        "authProvider",
+        "accountType",
+        "preferredCity",
+        "preferredLang",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "SavedAnalysis": {
+      "title": "Saved Location Analysis",
+      "description": "A user-owned shortlisted location analysis with score metadata and printable report query parameters.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "name": { "type": "string" },
+        "q": { "type": "string" },
+        "city": { "type": "string" },
+        "type": { "type": "string" },
+        "score": { "type": "number" },
+        "method": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "name",
+        "q",
+        "city",
+        "type",
+        "method",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Strictly private user profile document owned by userId. No cross-user reads or collection listing allowed."
+    },
+    "/users/{userId}/analyses/{analysisId}": {
+      "schema": { "$ref": "#/entities/SavedAnalysis" },
+      "description": "Per-user saved location analyses owned exclusively by userId."
+    }
+  }
+}

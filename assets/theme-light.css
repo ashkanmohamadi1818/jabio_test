@@ -1,0 +1,276 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Jabio light theme. Active when <html data-theme="light">; the button
+   and the saved choice are handled in assets/site.js. Light is the default;
+   choosing dark removes this attribute.
+
+   Heroes keep real satellite imagery, so .stage and .gp-hero switch their
+   tokens back to the dark values and only their bottom edge fades to light.
+   ═══════════════════════════════════════════════════════════════════════ */
+[data-theme="light"]{
+  color-scheme: light;
+  --page-bg: #ECEFF4;
+  --hm-end: #ECEFF4;
+  --ink: #111113;
+  --c-bg: #ECEFF4;
+  --c-surface: #FFFFFF;
+  --c-surface2: #FFFFFF;
+  --c-border: rgba(17,17,19,.13);
+  --c-border2: rgba(17,17,19,.2);
+  --c-text: #111113;
+  --c-text2: #4A4D55;
+  --c-text3: #63676F;
+  --tonal: rgba(17,17,19,.06);
+  --tonal-hover: rgba(17,17,19,.1);
+  --glass: #FFFFFF;
+  --panel: #F5F7FA;
+  /* accents used as text and small marks need depth on a light ground */
+  --grad-a: #0B7A75;
+  --grad-b: #5151C6;
+  --grad-c: #3E7A2B;
+  --grad-text: linear-gradient(69.72deg, #2E7D4F 0%, #5151C6 54%, #0B7A75 100%);
+  --pastel: linear-gradient(69.72deg, #D9F2C7 0%, #C2C3F5 54.04%, #ACF7F0 100%);
+  --soft-shadow: 0 1px 2px rgba(17,17,19,.05), 0 10px 26px rgba(17,17,19,.075);
+  /* login page tokens */
+  --page: #ECEFF4;
+  --border: rgba(17,17,19,.14);
+  --border-hover: rgba(17,17,19,.24);
+  --text: #111113;
+  --text-2: #4A4D55;
+  --text-3: #63676F;
+  --geo-a: #0B7A75;
+  --geo-b: #5151C6;
+  --geo-c: #3E7A2B;
+}
+[data-theme="light"], [data-theme="light"] body{ background: var(--page-bg) !important; color: var(--c-text); }
+/* the caption sits where the image fades out{
+  padding: 12px 16px; border-radius: 20px;
+  background: rgba(10,12,16,.62);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+}
+@media (max-width: 640px){/* a phone's headline block runs close to this caption{ padding: 8px 12px; bottom: 8px; border-radius: 16px; }}
+/* ── text that was fixed to white ───────────────────────────────────── */
+[data-theme="light"] .section-title, [data-theme="light"] .page-title, [data-theme="light"] .about-title,
+[data-theme="light"] .contact-info-title, [data-theme="light"] .service-card-title, [data-theme="light"] .dataset-title,
+[data-theme="light"] .tutorial-title, [data-theme="light"] .learn-card-title, [data-theme="light"] .ds-footer-title,
+[data-theme="light"] .ds-article h2, [data-theme="light"] .ds-footer-copy, [data-theme="light"] .ds-source,
+[data-theme="light"] .path-name, [data-theme="light"] .expertise-title, [data-theme="light"] .contact-channel-title{
+  color: var(--ink) !important;
+}
+[data-theme="light"] .service-card-desc, [data-theme="light"] .tutorial-desc, [data-theme="light"] .learn-card-desc,
+[data-theme="light"] .dataset-desc, [data-theme="light"] .section-sub, [data-theme="light"] .page-sub,
+[data-theme="light"] .dataset-meta, [data-theme="light"] .tutorial-meta, [data-theme="light"] .learn-card-meta,
+[data-theme="light"] .ds-article p, [data-theme="light"] .ds-article li, [data-theme="light"] .ds-footer-sub{
+  color: var(--c-text2) !important;
+}
+[data-theme="light"] .is-soon .dataset-title, [data-theme="light"] .is-soon .tutorial-title, [data-theme="light"] .is-soon .path-name{
+  color: var(--c-text2) !important;
+}
+[data-theme="light"] .ds-footer-col h3{ color: var(--c-text3); }
+[data-theme="light"] .ds-footer-col a{ color: var(--c-text2); }
+[data-theme="light"] .ds-footer-col a:hover{ color: #1F9EA2; }
+[data-theme="light"] .ds-article-back:hover{ color: var(--ink); }
+/* gradient text: the pastel washes out on white */
+[data-theme="light"] .grad-text, [data-theme="light"] .stat-num, [data-theme="light"] .about-title span{
+  background: var(--grad-text) !important; -webkit-background-clip: text !important; background-clip: text !important;
+}
+/* ── nav ────────────────────────────────────────────────────────────── */
+[data-theme="light"] .nav{
+  background: rgba(255,255,255,.82) !important;
+  border-color: rgba(17,17,19,.08) !important;
+  box-shadow: 0 12px 40px rgba(17,17,19,.14);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+[data-theme="light"] .nav-logo-text, [data-theme="light"][lang="fa"] .nav-logo-text{ color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important; }
+[data-theme="light"] .nav-item{ color: var(--ink) !important; }
+[data-theme="light"] .nav-item:hover{ background: rgba(17,17,19,.06) !important; }
+[data-theme="light"] .nav-item.active{ background: rgba(17,17,19,.09) !important; }
+[data-theme="light"] .lang-btn, [data-theme="light"] .nav-burger, [data-theme="light"] .theme-btn{
+  background: rgba(17,17,19,.06) !important; color: var(--ink) !important;
+}
+[data-theme="light"] .nav-burger svg path{ stroke: currentColor; }
+[data-theme="light"] .btn-ghost, [data-theme="light"] .nav .btn-ghost, [data-theme="light"] .hero-btn-ghost, [data-theme="light"] .ds-btn-tonal{
+  background: rgba(17,17,19,.06) !important; color: var(--ink) !important;
+}
+[data-theme="light"] .btn-ghost:hover, [data-theme="light"] .hero-btn-ghost:hover, [data-theme="light"] .ds-btn-tonal:hover{ background: rgba(17,17,19,.1) !important; }
+@media (max-width: 900px){[data-theme="light"] .nav.menu-open .nav-center{ background: #fff; border-color: rgba(17,17,19,.1); box-shadow: 0 12px 40px rgba(17,17,19,.16); }}
+[data-theme="light"] .mobile-menu-bg{ background: rgba(244,245,247,.92); }
+[data-theme="light"] .mobile-menu-link{ color: var(--ink); }
+/* pastel buttons need an edge on white */
+[data-theme="light"] .btn-primary, [data-theme="light"] .hero-btn-primary, [data-theme="light"] .form-submit,
+[data-theme="light"] .ds-btn-primary, [data-theme="light"] .dataset-dl-btn, [data-theme="light"] .service-card .service-card-link{
+  background: var(--pastel) !important;
+  box-shadow: inset 0 0 0 1px rgba(17,17,19,.1);
+}
+[data-theme="light"] .dataset-dl-btn.ds-dl-alt{
+  background: rgba(17,17,19,.06) !important; box-shadow: none;
+  color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important;
+}
+[data-theme="light"] .dataset-dl-btn.ds-dl-alt svg{ color: var(--ink); }
+/* ── badges + tags ──────────────────────────────────────────────────── */
+[data-theme="light"] .section-eyebrow, [data-theme="light"] .page-eyebrow, [data-theme="light"] .about-eyebrow{
+  background: #fff !important; box-shadow: inset 0 0 0 1px rgba(17,17,19,.1);
+  color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important;
+}
+[data-theme="light"] .ds-tag, [data-theme="light"] .dataset-card .dataset-badge,
+[data-theme="light"] .tutorial-card .level-badge, [data-theme="light"] .learn-card .learn-level-badge{
+  background: linear-gradient(rgba(17,17,19,.05), rgba(17,17,19,.05)) center / calc(100% - 62px) 100% no-repeat !important;
+  color: var(--ink) !important; -webkit-text-fill-color: var(--ink) !important;
+}
+[data-theme="light"] .ds-tag::before, [data-theme="light"] .dataset-card .dataset-badge::before,
+[data-theme="light"] .tutorial-card .level-badge::before, [data-theme="light"] .learn-card .learn-level-badge::before,
+[data-theme="light"] .ds-tag::after, [data-theme="light"] .dataset-card .dataset-badge::after,
+[data-theme="light"] .tutorial-card .level-badge::after, [data-theme="light"] .learn-card .learn-level-badge::after{
+  background-image: url('ds/sticky-r-light.svg');
+}
+[data-theme="light"] .dataset-tag, [data-theme="light"] .tutorial-tag, [data-theme="light"] .about-tag,
+[data-theme="light"] .about-skill, [data-theme="light"] .ds-soon{
+  background: rgba(17,17,19,.06) !important; color: var(--ink) !important;
+}
+/* ── cards ──────────────────────────────────────────────────────────── */
+[data-theme="light"] .service-card, [data-theme="light"] .dataset-card, [data-theme="light"] .tutorial-card, [data-theme="light"] .learn-card{
+  background: #fff !important;
+  border: 1px solid rgba(17,17,19,.14) !important;
+  box-shadow: var(--soft-shadow) !important;
+}
+[data-theme="light"] .tutorial-card, [data-theme="light"] .learn-card{
+  background: linear-gradient(#FFFFFF 0%, #E9EEFB 62%) !important;
+}
+[data-theme="light"] .service-card:hover, [data-theme="light"] .dataset-card:hover, [data-theme="light"] .tutorial-card:hover, [data-theme="light"] .learn-card:hover{
+  border-color: rgba(17,17,19,.24) !important;
+  box-shadow: 0 4px 10px rgba(17,17,19,.06), 0 16px 34px rgba(17,17,19,.11) !important;
+}
+[data-theme="light"] .is-soon:hover{ border-color: rgba(17,17,19,.14) !important; box-shadow: var(--soft-shadow) !important; }
+[data-theme="light"] .ds-panel, [data-theme="light"] .tutorial-body, [data-theme="light"] .learn-card-body{
+  background: #F5F7FA !important;
+  border: 1px solid rgba(17,17,19,.07) !important;
+}
+[data-theme="light"] .tutorial-card .tutorial-body, [data-theme="light"] .learn-card .learn-card-body{ background: rgba(255,255,255,.86) !important; }
+[data-theme="light"] .dataset-footer, [data-theme="light"] .tutorial-meta, [data-theme="light"] .learn-card-meta{ border-top-color: rgba(17,17,19,.1) !important; }
+[data-theme="light"] .service-card-icon, [data-theme="light"] .tutorial-thumb-icon, [data-theme="light"] .learn-thumb-icon{
+  background: rgba(17,17,19,.045) !important; border-color: rgba(17,17,19,.09) !important;
+}
+[data-theme="light"] .service-card-icon::before, [data-theme="light"] .tutorial-thumb-icon::before, [data-theme="light"] .learn-thumb-icon::before{
+  background: radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(255,255,255,.35) 100%);
+}
+[data-theme="light"] .service-card-icon::after, [data-theme="light"] .tutorial-thumb-icon::after, [data-theme="light"] .learn-thumb-icon::after{
+  mix-blend-mode: normal; opacity: .6;
+}
+[data-theme="light"] .service-card-icon svg, [data-theme="light"] .tutorial-thumb-icon svg, [data-theme="light"] .learn-thumb-icon svg{ filter: none; }
+[data-theme="light"] .service-card-icon svg [stroke]:not([stroke="none"]),
+[data-theme="light"] .tutorial-thumb-icon svg [stroke]:not([stroke="none"]),
+[data-theme="light"] .learn-thumb-icon svg [stroke]:not([stroke="none"]){ stroke: #0B7A75 !important; }
+[data-theme="light"] .service-card-icon svg [fill]:not([fill="none"]),
+[data-theme="light"] .tutorial-thumb-icon svg [fill]:not([fill="none"]),
+[data-theme="light"] .learn-thumb-icon svg [fill]:not([fill="none"]){ fill: #0B7A75 !important; }
+[data-theme="light"] .services-grid > :nth-child(3n+2) svg [stroke]:not([stroke="none"]),
+[data-theme="light"] .tutorials-grid > :nth-child(3n+2) svg [stroke]:not([stroke="none"]),
+[data-theme="light"] .learn-grid > :nth-child(3n+2) svg [stroke]:not([stroke="none"]){ stroke: #5151C6 !important; }
+[data-theme="light"] .services-grid > :nth-child(3n) svg [stroke]:not([stroke="none"]),
+[data-theme="light"] .tutorials-grid > :nth-child(3n) svg [stroke]:not([stroke="none"]),
+[data-theme="light"] .learn-grid > :nth-child(3n) svg [stroke]:not([stroke="none"]){ stroke: #3E7A2B !important; }
+[data-theme="light"] .path-card, [data-theme="light"] .expertise-card, [data-theme="light"] .contact-channel, [data-theme="light"] .stat-cell,
+[data-theme="light"] .mapexplorer-feature, [data-theme="light"] .about-float-badge, [data-theme="light"] .about-badge, [data-theme="light"] .ds-source,
+[data-theme="light"] .hm-step, [data-theme="light"] .hm-card, [data-theme="light"] .hm-city,
+[data-theme="light"] .decision-card, [data-theme="light"] .candidate,
+[data-theme="light"] .pg-card, [data-theme="light"] .pg-stat, [data-theme="light"] .pg-step, [data-theme="light"] .pg-q, [data-theme="light"] .pg-tablewrap,
+[data-theme="light"] .sv-card, [data-theme="light"] .tx-card, [data-theme="light"] .quick-start{
+  background: #fff !important;
+  border-color: rgba(17,17,19,.13) !important;
+  box-shadow: 0 1px 2px rgba(17,17,19,.04), 0 8px 22px rgba(17,17,19,.065) !important;
+}
+[data-theme="light"] .hm-city:hover, [data-theme="light"] .path-card:hover, [data-theme="light"] .expertise-card:hover,
+[data-theme="light"] .contact-channel:hover, [data-theme="light"] .tx-card:hover, [data-theme="light"] .ds-city:hover{
+  border-color: rgba(17,17,19,.24) !important;
+  box-shadow: 0 4px 10px rgba(17,17,19,.06), 0 14px 28px rgba(17,17,19,.1) !important;
+}
+[data-theme="light"] .jb-panel, [data-theme="light"] .jb-map-wrap{
+  border-color: rgba(17,17,19,.14);
+  box-shadow: 0 2px 6px rgba(17,17,19,.04), 0 12px 30px rgba(17,17,19,.07);
+}
+[data-theme="light"] .jb-area, [data-theme="light"] .jb-fit, [data-theme="light"] .jb-hint, [data-theme="light"] .jb-drow{
+  background: #F6F8FB;
+  border-color: rgba(17,17,19,.11);
+}
+[data-theme="light"] .jb-area:hover, [data-theme="light"] .jb-fit:hover, [data-theme="light"] .jb-drow:hover{
+  background: #fff;
+  border-color: rgba(17,17,19,.24);
+}
+[data-theme="light"] .path-icon, [data-theme="light"] .expertise-icon, [data-theme="light"] .contact-channel-icon,
+[data-theme="light"] .mapexplorer-feature-icon, [data-theme="light"] .about-badge-icon{
+  background: #F3F5F8 !important; border-color: rgba(17,17,19,.1) !important;
+}
+[data-theme="light"] .mapexplorer-feature-icon svg [stroke]:not([stroke="none"]), [data-theme="light"] .expertise-icon svg [stroke]:not([stroke="none"]){ stroke: #0B7A75; }
+[data-theme="light"] .about-avatar-img{ background: #fff !important; border-color: rgba(17,17,19,.12) !important; }
+[data-theme="light"] .ds-preview{ border-color: rgba(17,17,19,.12) !important; box-shadow: var(--soft-shadow); }
+/* ── sections ───────────────────────────────────────────────────────── */
+[data-theme="light"] .services-section::before, [data-theme="light"] .learn-section::before{
+  background: radial-gradient(ellipse 45% 50% at 50% 50%, rgba(172,247,240,.3) 0%, rgba(194,195,245,.16) 40%, transparent 100%);
+}
+[data-theme="light"] .page-header-bg{
+  background: radial-gradient(ellipse 45% 60% at 50% 40%, rgba(172,247,240,.28) 0%, rgba(194,195,245,.14) 50%, transparent 100%) !important;
+}
+[data-theme="light"] .dot-grid{ background-image: radial-gradient(circle, rgba(17,17,19,.32) .7px, transparent 1.1px); }
+[data-theme="light"] .page-rail{ background: linear-gradient(to bottom, rgba(17,17,19,.03) 0%, rgba(17,17,19,.08) 50%, rgba(17,17,19,.03) 100%); }
+[data-theme="light"] .rail-glow{
+  background: linear-gradient(to bottom, transparent 0%, rgba(17,17,19,0) 10%, rgba(17,17,19,.4) 50%, rgba(17,17,19,0) 90%, transparent 100%);
+  box-shadow: none;
+}
+/* ── filters + forms ────────────────────────────────────────────────── */
+[data-theme="light"] .filter-bar-inner{ background: rgba(255,255,255,.86); box-shadow: 0 12px 40px rgba(17,17,19,.12); }
+[data-theme="light"] .filter-search{ background: rgba(17,17,19,.05) !important; color: var(--ink); }
+[data-theme="light"] .filter-search input{ color: var(--ink); }
+[data-theme="light"] .filter-search input::placeholder, [data-theme="light"] .form-input::placeholder{ color: var(--c-text3); }
+[data-theme="light"] .filter-chip, [data-theme="light"] .filter-chip.active-all{ background: rgba(17,17,19,.06) !important; color: var(--c-text2) !important; }
+[data-theme="light"] .filter-chip:hover{ background: rgba(17,17,19,.1) !important; color: var(--ink) !important; }
+[data-theme="light"] .filter-chip.active, [data-theme="light"] .filter-chip.active-all.active{ background: var(--ink) !important; color: #fff !important; }
+[data-theme="light"] .form-input{ background: #fff !important; border-color: rgba(17,17,19,.12) !important; color: var(--ink); }
+[data-theme="light"] .form-input:focus{ border-color: #5151C6 !important; }
+[data-theme="light"] .form-label{ color: var(--ink); }
+[data-theme="light"] .maplibregl-map{ background: #E9EBEF !important; }
+[data-theme="light"] .map-status{
+  background: rgba(255,255,255,.9) !important; color: var(--c-text2) !important; border-color: rgba(17,17,19,.08) !important;
+}
+/* ── footer ─────────────────────────────────────────────────────────── */
+[data-theme="light"] .ds-footer-card{
+  background: #fff;
+  border-color: rgba(17,17,19,.13);
+  box-shadow: 0 2px 6px rgba(17,17,19,.04), 0 16px 38px rgba(17,17,19,.08);
+}
+[data-theme="light"] .ds-footer-card::before{
+  background: radial-gradient(ellipse 65% 90% at 85% 110%, rgba(172,247,240,.28) 0%, rgba(194,195,245,.14) 42%, transparent 72%);
+}
+[data-theme="light"] .ds-footer-bar{ border-top-color: rgba(17,17,19,.08); }
+[data-theme="light"] .ds-footer-copy,
+[data-theme="light"] .ds-footer-credit{ color: var(--c-text3) !important; }
+[data-theme="light"] .ds-footer-credit strong{ color: var(--ink); }
+[data-theme="light"] .ds-footer-social a{ background: rgba(17,17,19,.06); color: var(--ink); }
+[data-theme="light"] .ds-footer-social a:hover{ background: rgba(17,17,19,.12); }
+[data-theme="light"] .ds-footer-mail{ color: var(--c-text2); }
+/* ── article ────────────────────────────────────────────────────────── */
+[data-theme="light"] .ds-code{ background: #fff; border-color: rgba(17,17,19,.13); box-shadow: 0 2px 10px rgba(17,17,19,.04); }
+[data-theme="light"] .ds-code code{ color: #24262B; }
+[data-theme="light"] .ds-demo-map{ background: #E9EBEF; border-color: rgba(17,17,19,.13); }
+/* ── sign-in page ───────────────────────────────────────────────────── */
+
+[data-theme="light"] .logo-name{ background: none; color: var(--ink); -webkit-text-fill-color: var(--ink); }
+[data-theme="light"] .btn-link{ color: var(--ink); }
+[data-theme="light"] .btn-tonal{ color: var(--ink); }
+[data-theme="light"] .horizon{ background: linear-gradient(180deg, rgba(194,195,245,.32) 0%, rgba(194,195,245,.1) 45%, rgba(194,195,245,0) 100%); }
+[data-theme="light"] .beam{ filter: blur(38.5px) invert(1); opacity: .14; }
+[data-theme="light"] .input{ background: #fff; border-color: rgba(17,17,19,.16); box-shadow: 0 2px 6px rgba(17,17,19,.04); }
+[data-theme="light"] .input input{ color: var(--ink); }
+/* ── switching ──────────────────────────────────────────────────────── */
+html.theme-anim, html.theme-anim body, html.theme-anim .nav, html.theme-anim .service-card, html.theme-anim .dataset-card,
+html.theme-anim .tutorial-card, html.theme-anim .learn-card, html.theme-anim .ds-footer-card, html.theme-anim .ds-panel{
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease !important;
+}
+/* ── city data downloads, jabio, content ────────────────────────────── */
+[data-theme="light"] .ds-city{ background: #fff; border-color: rgba(17,17,19,.13); box-shadow: 0 1px 2px rgba(17,17,19,.04), 0 8px 20px rgba(17,17,19,.06); }
+[data-theme="light"] .ds-city b{ color: var(--ink); }
+[data-theme="light"] .ds-cov.rich{ color: #0E7A4B; }
+[data-theme="light"] .ds-cov.partial{ color: #8A5A00; }
+[data-theme="light"] .ds-cov.thin{ color: #B02525; }
+[data-theme="light"] .ds-city-note a{ color: #0B7A75; }
+[data-theme="light"] .hm-eye{ color: #0B7A75; }
+
+

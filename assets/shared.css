@@ -1,0 +1,227 @@
+/*
+ * Jabio — Shared Styles
+ * Loaded in every page. Handles:
+ *   1. Vazirmatn Persian font (self-hosted in assets/fonts)
+ *   2. RTL / FA mode overrides for ALL pages
+ *   3. fa-text utility class
+ */
+/* Bebas Neue and Poppins: self-hosted Latin subsets (SIL OFL), so the site does not depend on Google Fonts */
+@font-face{font-family:'Bebas Neue';font-weight:400;font-display:swap;src:url('fonts/BebasNeue-400.woff2') format('woff2')}
+@font-face{font-family:'Poppins';font-weight:300;font-display:swap;src:url('fonts/Poppins-300.woff2') format('woff2')}
+@font-face{font-family:'Poppins';font-weight:400;font-display:swap;src:url('fonts/Poppins-400.woff2') format('woff2')}
+@font-face{font-family:'Poppins';font-weight:500;font-display:swap;src:url('fonts/Poppins-500.woff2') format('woff2')}
+@font-face{font-family:'Poppins';font-weight:600;font-display:swap;src:url('fonts/Poppins-600.woff2') format('woff2')}
+/* ── Vazirmatn: self-hosted in assets/fonts (SIL OFL, see Vazirmatn-OFL.txt).
+   No CDN, so Persian text renders the same offline and wherever a CDN is blocked. */
+@font-face{
+  font-family: 'Vazirmatn';
+  font-style:  normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('fonts/Vazirmatn-Light.woff2') format('woff2');
+}
+@font-face{
+  font-family: 'Vazirmatn';
+  font-style:  normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/Vazirmatn-Regular.woff2') format('woff2');
+}
+@font-face{
+  font-family: 'Vazirmatn';
+  font-style:  normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/Vazirmatn-Medium.woff2') format('woff2');
+}
+@font-face{
+  font-family: 'Vazirmatn';
+  font-style:  normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/Vazirmatn-SemiBold.woff2') format('woff2');
+}
+@font-face{
+  font-family: 'Vazirmatn';
+  font-style:  normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/Vazirmatn-Bold.woff2') format('woff2');
+}
+@font-face{
+  font-family: 'Vazirmatn';
+  font-style:  normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('fonts/Vazirmatn-ExtraBold.woff2') format('woff2');
+}
+/* ── .fa-text utility ─────────────────────────────────────────────────── */
+.fa-text{
+  font-family: 'Vazirmatn', sans-serif;
+}
+/* ── [lang="fa"] global overrides ────────────────────────────────────────
+   Applies to EVERY page that includes this stylesheet.
+   - Sets Vazirmatn as the base font for the whole page
+   - Forces RTL text direction on all elements
+   - Overrides Bebas Neue headings with Vazirmatn (Bold weight looks good)
+   - Restores -webkit-text-fill-color so gradient text clips work in FA mode
+   - Adjusts letter-spacing (Bebas uses -2px+ which looks wrong on Arabic)
+                                                                         */
+[lang="fa"],
+[lang="fa"] body{
+  font-family: 'Vazirmatn', 'Poppins', system-ui, sans-serif !important;
+  direction: rtl;
+}
+/* nav & UI text */
+[lang="fa"] .nav-item,
+[lang="fa"] .nav-logo-text,
+[lang="fa"] .btn-primary,
+[lang="fa"] .btn-ghost,
+[lang="fa"] .btn-tonal,
+[lang="fa"] .lang-btn{
+  font-family: 'Vazirmatn', sans-serif !important;
+  letter-spacing: 0 !important;
+}
+[lang="fa"] .section-title,
+[lang="fa"] .page-title,
+[lang="fa"] .about-title,
+[lang="fa"] .contact-info-title,
+[lang="fa"] .mp-hero-title,
+[lang="fa"] h1,
+[lang="fa"] h2,
+[lang="fa"] h3{
+  font-family: 'Vazirmatn', sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;   /* negative tracking breaks Persian letter joins */
+  line-height: 1.35 !important;
+}
+[lang="fa"] .nav-logo-text,
+[lang="fa"] .stat-num,
+[lang="fa"] .section-eyebrow,
+[lang="fa"] .about-eyebrow,
+[lang="fa"] .page-eyebrow,
+[lang="fa"] .grad-text,
+[lang="fa"] .service-card-link,
+[lang="fa"] .footer-brand-name,
+[lang="fa"] .footer-copy span{
+  font-family: 'Vazirmatn', sans-serif !important;
+  -webkit-text-fill-color: transparent !important;
+}
+/* stat numbers — keep gradient but Vazirmatn */
+[lang="fa"] .stat-num,
+[lang="fa"] .footer-brand-name{
+  font-size: clamp(28px, 4vw, 48px) !important;
+}
+/* form labels and inputs */
+[lang="fa"] input,
+[lang="fa"] textarea,
+[lang="fa"] select,
+[lang="fa"] label,
+[lang="fa"] .field-label,
+[lang="fa"] .form-label,
+[lang="fa"] .sidebar-title{
+  font-family: 'Vazirmatn', sans-serif !important;
+  direction: rtl;
+  text-align: right;
+}
+[lang="fa"] .sidebar-header{
+  direction: rtl;
+}
+/* badges & chips */
+[lang="fa"] .dataset-badge,
+[lang="fa"] .level-badge,
+[lang="fa"] .learn-level-badge,
+[lang="fa"] .mp-hero-chip{
+  font-family: 'Vazirmatn', sans-serif !important;
+  letter-spacing: 0 !important;
+}
+/* footer links */
+[lang="fa"] .footer-link,
+[lang="fa"] .footer-col-title,
+[lang="fa"] .footer-brand-desc,
+[lang="fa"] .footer-copy{
+  font-family: 'Vazirmatn', sans-serif !important;
+  direction: rtl;
+}
+/* about page */
+[lang="fa"] .about-bio,
+[lang="fa"] .about-skill,
+[lang="fa"] .expertise-title,
+[lang="fa"] .expertise-desc{
+  font-family: 'Vazirmatn', sans-serif !important;
+  line-height: 1.9 !important;  /* Persian needs more line-height */
+}
+[lang="fa"] .mp-hero-eyebrow,
+[lang="fa"] .mp-hero-sub,
+[lang="fa"] .section-sub,
+[lang="fa"] .page-sub{
+  font-family: 'Vazirmatn', sans-serif !important;
+}
+/* login page specifics */
+[lang="fa"] .col h1,
+[lang="fa"] .eyebrow,
+[lang="fa"] .sub,
+[lang="fa"] .prompt,
+[lang="fa"] .copy,
+[lang="fa"] .btn-link{
+  font-family: 'Vazirmatn', sans-serif !important;
+  letter-spacing: 0 !important;
+}
+/* ── Service/dataset cards in FA mode ─────────────────────────────── */
+[lang="fa"] .service-card-title,
+[lang="fa"] .service-card-desc,
+[lang="fa"] .dataset-title,
+[lang="fa"] .dataset-desc,
+[lang="fa"] .learn-card-title,
+[lang="fa"] .learn-card-desc,
+[lang="fa"] .tutorial-title,
+[lang="fa"] .tutorial-desc{
+  font-family: 'Vazirmatn', sans-serif !important;
+  line-height: 1.8 !important;
+}
+/* ── Reduce letter-spacing globally for Persian ──────────────────── */
+[lang="fa"] *{
+  letter-spacing: 0 !important;
+}
+/* Then re-apply needed tracking to headings (done above) */
+
+/* ── Controls do not inherit the page font by default ─────────────── */
+[lang="fa"] button,
+[lang="fa"] input,
+[lang="fa"] select,
+[lang="fa"] textarea{
+  font-family: 'Vazirmatn', sans-serif !important;
+}
+/* Persian letterforms run larger than Bebas Neue at the same size */
+
+/* ── Global soft-rounded dropdowns (all <select> controls site-wide) ─── */
+.jb-dd-native{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip-path:inset(50%)!important;border:0!important;pointer-events:none!important;opacity:0!important}
+.jb-dd{position:relative;display:block;width:100%;min-width:0}
+.jb-dd-trigger{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-width:0;min-height:46px;padding:10px 14px;border-radius:16px;border:1px solid var(--jb-line,var(--c-border2,rgba(255,255,255,.14)));background:var(--jb-soft,var(--c-surface2,rgba(255,255,255,.06)));color:var(--jb-text,var(--c-text,#fff));font:inherit;font-size:14px;line-height:1.4;text-align:start;cursor:pointer;box-sizing:border-box;transition:border-color .18s ease,background .18s ease,box-shadow .18s ease}
+[data-theme="light"] .jb-dd-trigger{border-color:rgba(17,17,19,.14);background:#F8FAFC;color:#111113}
+.jb-dd-trigger:hover{border-color:var(--jb-text3,rgba(255,255,255,.32))}
+[data-theme="light"] .jb-dd-trigger:hover{border-color:rgba(17,17,19,.28);background:#fff}
+.jb-dd-trigger[aria-expanded="true"]{border-color:var(--jb-accent,#ACF7F0);box-shadow:0 0 0 3px rgba(172,247,240,.14)}
+[data-theme="light"] .jb-dd-trigger[aria-expanded="true"]{border-color:rgba(11,122,117,.45);box-shadow:0 0 0 3px rgba(11,122,117,.1);background:#fff}
+.jb-dd-trigger:focus-visible{outline:2px solid var(--jb-accent,#6565c8);outline-offset:2px}
+.jb-dd-trigger:disabled{opacity:.55;cursor:not-allowed}
+.jb-dd-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;flex:1}
+.jb-dd-chev{flex:none;width:16px;height:16px;color:var(--jb-text2,var(--c-text2,#BBBBBD));transition:transform .2s cubic-bezier(.22,.61,.36,1)}
+.jb-dd-trigger[aria-expanded="true"] .jb-dd-chev{transform:rotate(180deg)}
+.jb-dd-menu{position:fixed;z-index:9999;display:flex;flex-direction:column;gap:2px;max-height:264px;overflow-y:auto;overscroll-behavior:contain;padding:6px;border-radius:20px;border:1px solid rgba(255,255,255,.14);background:#1a1c24;color:#fff;box-shadow:0 16px 38px rgba(0,0,0,.52),0 2px 8px rgba(0,0,0,.3);scrollbar-width:thin;box-sizing:border-box;animation:jbDdDrop .16s cubic-bezier(.22,.61,.36,1)}
+.jb-dd-menu.is-up{animation-name:jbDdDropUp}
+.jb-dd-menu[hidden]{display:none!important}
+[data-theme="light"] .jb-dd-menu{background:#fff;color:#111113;border-color:rgba(17,17,19,.12);box-shadow:0 14px 34px rgba(17,17,19,.14),0 2px 8px rgba(17,17,19,.06)}
+.jb-dd-group{padding:7px 12px 4px;font-size:11px;font-weight:600;color:rgba(255,255,255,.52)}
+[data-theme="light"] .jb-dd-group{color:#63676F}
+.jb-dd-opt{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;padding:9px 12px;border:0;border-radius:13px;background:transparent;color:inherit;font:inherit;font-size:13.5px;line-height:1.45;text-align:start;cursor:pointer;box-sizing:border-box;transition:background .14s ease,color .14s ease}
+.jb-dd-opt:hover,.jb-dd-opt:focus-visible{background:rgba(255,255,255,.09);outline:none}
+[data-theme="light"] .jb-dd-opt:hover,[data-theme="light"] .jb-dd-opt:focus-visible{background:rgba(17,17,19,.055)}
+.jb-dd-opt[aria-selected="true"]{background:rgba(172,247,240,.14);color:#ACF7F0;font-weight:600}
+[data-theme="light"] .jb-dd-opt[aria-selected="true"]{background:rgba(11,122,117,.1);color:#0B7A75}
+.jb-dd-opt:disabled{opacity:.42;cursor:not-allowed}
+.jb-dd-check{flex:none;width:15px;height:15px;opacity:0;transition:opacity .12s ease}
+.jb-dd-opt[aria-selected="true"] .jb-dd-check{opacity:1}
+@keyframes jbDdDrop{from{opacity:0;transform:translateY(-4px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes jbDdDropUp{from{opacity:0;transform:translateY(4px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+

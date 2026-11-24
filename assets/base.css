@@ -1,0 +1,68 @@
+/* Structure shared by every page: tokens, reset, nav, language panel, buttons, page header.
+   Looks live in design-system.css and theme-light.css, which load after this file. */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --c-bg:#000;--c-surface:#0d0d0d;--c-surface2:#141414;
+  --c-border:rgba(255,255,255,.07);--c-border2:rgba(255,255,255,.12);
+  --c-text:#fff;--c-text2:#BBBBBD;--c-text3:#878D99;
+  --grad-a:#ACF7F0;--grad-b:#C2C3F5;--grad-c:#D9F2C7;
+  --grad:linear-gradient(120deg,#ACF7F0 0%,#C2C3F5 50%,#D9F2C7 100%);
+  --tonal:rgba(255,255,255,.07);--tonal-hover:rgba(255,255,255,.13);
+  --ease:cubic-bezier(.4,0,.2,1);--design-w:1440px;
+}
+html{overflow-x:hidden;overflow-y:auto;scroll-behavior:smooth;background:var(--c-bg);color:var(--c-text);font-family:'Poppins',sans-serif}
+html[dir="rtl"], html[lang="fa"], .fa-text { font-family: 'Vazirmatn', 'Poppins', sans-serif !important; }
+body{overflow:visible;position:relative;z-index:0;isolation:isolate;min-height:100vh}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+
+.nav{position:fixed;top:0;left:0;right:0;padding:12px max(24px,min(5vw,80px),calc(50vw - 680px));display:flex;align-items:center;justify-content:space-between;z-index:2147483647;height:48px;box-sizing:content-box;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--c-border)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--c-text)}
+.nav-logo-icon{height:46px;display:flex;align-items:center;flex:0 0 auto}
+.brand-img{display:block;height:100%;width:auto}
+/* the pin is dark purple: a thin light edge keeps it visible on the dark theme */
+:root:not([data-theme="light"]) .brand-img{filter:drop-shadow(0 0 1px rgba(255,255,255,.7))}
+.nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:#fff}
+.nav-center{display:flex;align-items:center;gap:4px;position:absolute;left:50%;transform:translateX(-50%)}
+.nav-item{position:relative;display:flex;align-items:center;gap:6px;height:36px;padding:0 14px;font-size:13px;font-weight:500;color:var(--c-text3);background:none;border:none;cursor:pointer;border-radius:999px;text-decoration:none;transition:color .18s,background .18s;white-space:nowrap}
+.nav-item:hover,.nav-item.active{color:var(--c-text);background:var(--tonal)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.lang-btn{display:flex;align-items:center;gap:5px;height:32px;padding:0 12px;border:1px solid var(--c-border2);border-radius:999px;background:var(--tonal);color:var(--c-text2);font-size:12px;font-weight:500;cursor:pointer;transition:background .18s,color .18s}
+.btn-primary,.btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:36px;padding:0 18px;border-radius:999px;font-weight:600;font-size:13px;border:none;cursor:pointer;text-decoration:none}
+.btn-primary{background:var(--grad);color:#000}
+.btn-ghost{background:var(--tonal);color:var(--c-text2);font-weight:500}
+@media(max-width:900px){.nav-center{display:none}}
+@media(max-width:640px){.nav{padding:12px 20px}}
+
+.lang-overlay{position:fixed;inset:0;z-index:2147483646;display:none}
+.lang-overlay.open{display:block}
+.lang-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.lang-panel{position:absolute;top:72px;right:max(24px,min(5vw,80px));width:240px;background:var(--c-surface2);border:1px solid var(--c-border2);border-radius:16px;padding:8px;z-index:1;box-shadow:0 24px 60px rgba(0,0,0,.7)}
+.lang-option{display:flex;align-items:center;gap:12px;height:44px;padding:0 14px;border-radius:10px;cursor:pointer;font-size:14px;color:var(--c-text2);transition:background .15s,color .15s}
+.lang-option:hover,.lang-option.active{background:var(--tonal);color:var(--c-text)}
+.lang-flag{font-size:20px}
+.lang-label{font-weight:500}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.08s}.reveal-delay-2{transition-delay:.16s}.reveal-delay-3{transition-delay:.24s}
+
+.page-header{padding:120px 0 40px;position:relative;overflow:hidden}
+.page-header-inner{position:relative;z-index:1}
+.page-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,80px);letter-spacing:-.5px;line-height:.95;margin-bottom:16px}
+.page-sub{font-size:clamp(14px,1.3vw,16px);color:var(--c-text2);line-height:1.7;max-width:640px}
+.wrap{padding-inline:var(--gutter,max(40px,calc(50% - 640px)))}
+.sec{position:relative;padding-block:72px}
+
+/* anonymous-count notice: only exists when analytics is configured */
+.ga-notice{position:fixed;inset-inline:16px;bottom:16px;z-index:90;max-width:560px;margin-inline:auto;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:12px 16px;border-radius:16px;background:var(--c-surface,#16181d);color:var(--c-text,#fff);border:1px solid rgba(128,128,128,.3);font-size:13px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.ga-notice span{flex:1 1 240px}.ga-notice a{color:inherit;text-decoration:underline}
+.ga-notice button{height:36px;padding:0 16px;border:0;border-radius:999px;background:var(--c-text,#fff);color:var(--c-bg,#000);font-weight:600;cursor:pointer}
+/* the name beside the logo: always English, in both languages; "ja" light, "bio" teal */
+.brand-word{font-family:'Poppins',sans-serif!important;font-weight:600;font-size:24px;letter-spacing:.3px;line-height:1;direction:ltr;unicode-bidi:isolate;display:inline-flex;margin-inline-start:10px;white-space:nowrap}
+.brand-word i{font-style:normal;color:#F4F6FF}
+.brand-word b{font-weight:600;color:#39BFC2}
+.ds-footer-mark{gap:0}
+.ds-footer-mark .brand-word{font-size:22px;margin-inline-start:9px}
+[data-theme="light"] .brand-word i{color:#35296E}
+[data-theme="light"] .brand-word b{color:#1F9EA2}

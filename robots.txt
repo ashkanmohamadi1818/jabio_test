@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /report.html
+Disallow: /saved.html
+Disallow: /login.html
+Disallow: /signup.html
+Disallow: /account
+Disallow: /forgot-password
+
+
+Sitemap: /sitemap.xml

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>/jabio.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/jabio.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/jabio.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/jabio.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>/compare.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/compare.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/compare.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/compare.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>/categories.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/categories.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/categories.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/categories.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>/examples.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/examples.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/examples.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/examples.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>/guide.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/guide.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/guide.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/guide.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>/faq.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/faq.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/faq.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/faq.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+  <url>
+    <loc>/sources.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/sources.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/sources.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/sources.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>/survey.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/survey.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/survey.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/survey.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/about.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/about.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/about.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>/contact.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/contact.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/contact.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/contact.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.55</priority>
+  </url>
+  <url>
+    <loc>/privacy.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/privacy.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/privacy.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/privacy.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.35</priority>
+  </url>
+  <url>
+    <loc>/terms.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="/terms.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fa-IR" href="/terms.html?lang=fa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="/terms.html"/>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.35</priority>
+  </url>
+</urlset>

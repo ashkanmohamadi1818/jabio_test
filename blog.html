@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-title-en="Location Intelligence Blog & Articles – Jabio" data-title-fa="وبلاگ و مقالات هوش مکانی – جابیو" data-desc-en="Read expert articles on spatial data analysis, retail intelligence, foot traffic patterns, and choosing the right business location in Iran." data-desc-fa="مقالات تخصصی هوش مکانی، تحلیل خرده‌فروشی، بررسی تردد عابران و راهنمای انتخاب بهترین مکان کسب‌وکار در ایران.">
+<head>
+<meta charset="UTF-8"/>
+<script>document.documentElement.setAttribute('data-theme','light');try{if(localStorage.getItem('ga_theme')==='dark')document.documentElement.removeAttribute('data-theme')}catch(e){}</script>
+<script>try{var d=document.documentElement;d.lang='fa';d.dir='rtl';['Regular','Bold'].forEach(function(w){var l=document.createElement('link');l.rel='preload';l.as='font';l.type='font/woff2';l.crossOrigin='';l.href='assets/fonts/Vazirmatn-'+w+'.woff2';document.head.appendChild(l);});}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#000000"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<title>وبلاگ و مقالات هوش مکانی – جابیو</title>
+<meta name="description" content="مقالات تخصصی هوش مکانی، تحلیل خرده‌فروشی، بررسی تردد عابران و راهنمای انتخاب بهترین مکان کسب‌وکار در ایران.">
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" href="assets/shared.css?v=dd-1">
+<link rel="stylesheet" href="assets/design-system.css">
+<link rel="stylesheet" href="assets/theme-light.css">
+<link rel="stylesheet" href="assets/pages.css">
+<style>
+.blog-hero{padding:60px 20px 40px;text-align:center;max-width:800px;margin:0 auto}
+.blog-hero h1{font-size:32px;font-weight:800;margin-bottom:12px;letter-spacing:-.02em}
+.blog-hero p{font-size:16px;color:var(--jb-text2);line-height:1.6;margin-bottom:24px}
+.blog-search{width:100%;max-width:500px;height:48px;padding:0 20px;border-radius:24px;border:1px solid var(--jb-line);background:var(--jb-soft);color:var(--jb-text);font:inherit;font-size:14px;box-shadow:0 4px 16px rgba(0,0,0,.03);margin:0 auto 20px;display:block}
+.blog-cats{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.blog-cat-btn{padding:6px 16px;border-radius:99px;border:1px solid var(--jb-line);background:var(--jb-soft);color:var(--jb-text2);font-size:13px;cursor:pointer;transition:all .15s}
+.blog-cat-btn:hover,.blog-cat-btn.active{background:var(--jb-ink);color:#fff;border-color:var(--jb-ink);font-weight:600}
+.blog-container{max-width:1100px;margin:0 auto;padding:0 20px 60px}
+.blog-featured{background:var(--jb-soft);border:1px solid var(--jb-line);border-radius:24px;padding:32px;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;margin-bottom:48px;cursor:pointer;transition:transform .2s}
+.blog-featured:hover{transform:translateY(-2px)}
+.blog-featured-content h2{font-size:24px;font-weight:700;margin:12px 0;line-height:1.4}
+.blog-featured-content p{font-size:14.5px;color:var(--jb-text2);line-height:1.7;margin-bottom:20px}
+.blog-meta{font-size:12px;color:var(--jb-text2);display:flex;gap:12px;align-items:center}
+.blog-img{width:100%;height:240px;border-radius:16px;background:linear-gradient(135deg,#D9F2C7 0%,#C2C3F5 100%);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:#111}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill, minmax(320px, 1fr));gap:24px}
+.blog-card{background:var(--jb-soft);border:1px solid var(--jb-line);border-radius:20px;padding:24px;display:flex;flex-direction:column;cursor:pointer;transition:transform .2s}
+.blog-card:hover{transform:translateY(-3px)}
+.blog-card h3{font-size:18px;font-weight:700;margin:10px 0 8px;line-height:1.4}
+.blog-card p{font-size:13.5px;color:var(--jb-text2);line-height:1.6;flex-grow:1;margin-bottom:16px}
+.blog-modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.blog-modal-box{background:var(--jb-bg);color:var(--jb-text);max-width:700px;width:100%;max-height:85vh;overflow-y:auto;border-radius:24px;padding:32px;box-shadow:0 20px 40px rgba(0,0,0,.2);position:relative}
+.blog-close{position:absolute;top:20px;left:20px;width:36px;height:36px;border-radius:50%;border:1px solid var(--jb-line);background:var(--jb-soft);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+@media(max-width:768px){.blog-featured{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="jb-body">
+
+<nav class="nav" id="mainNav">
+  <a class="nav-logo" href="index.html" aria-label="Jabio home">
+    <div class="nav-logo-icon"><img class="brand-img" src="assets/logo.png" alt="" width="56" height="46"></div>
+    <span class="brand-word" dir="ltr" lang="en" translate="no"><i>ja</i><b>bio</b></span>
+  </a>
+  <div class="nav-center">
+    <a class="nav-item" href="/" data-en="Home" data-fa="خانه">Home</a>
+    <a class="nav-item" href="/jabio.html" data-en="Analyze" data-fa="تحلیل مکان">Analyze</a>
+    <a class="nav-item" href="/cities" data-en="Cities" data-fa="شهرها">Cities</a>
+    <a class="nav-item active" href="/blog.html" data-en="Blog" data-fa="وبلاگ">Blog</a>
+    <a class="nav-item" href="/pricing" data-en="Pricing" data-fa="تعرفه‌ها">Pricing</a>
+    <a class="nav-item" href="/saved.html" data-en="Saved" data-fa="ذخیره‌شده‌ها">Saved</a>
+  </div>
+  <div class="nav-right">
+    <button class="lang-btn" id="langToggleBtn" aria-label="Switch language" aria-expanded="false"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10zM2 12h20" stroke="currentColor" stroke-width="1.8"/></svg><span id="langLabel">FA</span></button>
+    <a class="btn-ghost" href="login.html" data-en="Sign in" data-fa="ورود">Sign in</a>
+    <a class="btn-primary" href="jabio.html" data-en="Start analysis" data-fa="شروع تحلیل">Start analysis</a>
+  </div>
+</nav>
+
+<main>
+  <div class="blog-hero">
+    <h1>وبلاگ و مقالات تخصصی هوش مکانی</h1>
+    <p>آخرین مقالات، راهنمای انتخاب مکان، تحلیل رفتار تردد عابران و مدل‌های علمی مکان‌یابی کسب‌وکار در ایران.</p>
+    <input type="text" class="blog-search" id="blogSearch" placeholder="جستجو در مقالات هوش مکانی...">
+    <div class="blog-cats">
+      <button class="blog-cat-btn active" data-cat="all">همه مقالات</button>
+      <button class="blog-cat-btn" data-cat="spatial">هوش مکانی</button>
+      <button class="blog-cat-btn" data-cat="retail">تحلیل خرده‌فروشی</button>
+      <button class="blog-cat-btn" data-cat="case">مطالعات موردی</button>
+      <button class="blog-cat-btn" data-cat="guide">راهنمای کسب‌وکار</button>
+    </div>
+  </div>
+
+  <div class="blog-container">
+    <div class="blog-featured" data-article="1">
+      <div class="blog-featured-content">
+        <span style="font-size:12px;font-weight:600;color:var(--jb-ink);background:var(--jb-pastel);padding:4px 10px;border-radius:99px">مقاله ویژه · هوش مکانی</span>
+        <h2>چگونه بهترین مکان را برای افتتاح کافه و رستوران در کلان‌شهرها انتخاب کنیم؟</h2>
+        <p>موفقیت یک کافه بیش از کیفیت قهوه به مکان آن بستگی دارد. بررسی تراکم رقبای شعاعی، قدرت خرید مشتریان هدف و الگوهای تردد عابران پیاده سه ضلع اصلی موفقیت در مکان‌یابی است.</p>
+        <div class="blog-meta"><span>📅 ۱ آذر ۱۴۰۵</span> • <span>⏱️ ۷ دقیقه مطالعه</span> • <span>✍️ تیم تحلیل جابیو</span></div>
+      </div>
+      <div class="blog-img">مکان‌یابی کافه و رستوران</div>
+    </div>
+
+    <div class="blog-grid" id="blogGrid">
+      <div class="blog-card" data-article="2" data-cat="retail">
+        <div style="font-size:12px;color:var(--jb-text2);margin-bottom:6px">تحلیل خرده‌فروشی</div>
+        <h3>نقش تحلیل تردد عابران (Foot Traffic) در افزایش فروش فروشگاه‌های زنجیره‌ای</h3>
+        <p>چگونه داده‌های تردد روزانه به مدیران برندها کمک می‌کند تا شعب جدید را با دقت بالای ۹۰ درصد پیش‌بینی کنند.</p>
+        <div class="blog-meta"><span>📅 ۲۸ آبان ۱۴۰۵</span> • <span>⏱️ ۵ دقیقه</span></div>
+      </div>
+      <div class="blog-card" data-article="3" data-cat="spatial">
+        <div style="font-size:12px;color:var(--jb-text2);margin-bottom:6px">هوش مکانی</div>
+        <h3>مدل‌سازی هگزبین (Hexbin) و کاربرد آن در تحلیل‌های پیشرفته فضای شهری</h3>
+        <p>چرا تحلیل شبکه‌ای مبتنی بر سلول‌های شش‌ضلعی نسبت به مرزهای سنتی محلات دقیق‌تر و کارآمدتر است؟</p>
+        <div class="blog-meta"><span>📅 ۲۲ آبان ۱۴۰۵</span> • <span>⏱️ ۶ دقیقه</span></div>
+      </div>
+      <div class="blog-card" data-article="4" data-cat="guide">
+        <div style="font-size:12px;color:var(--jb-text2);margin-bottom:6px">راهنمای کسب‌وکار</div>
+        <h3>۵ اشتباه مرگبار استارتاپ‌ها در انتخاب دفتر کار و فروشگاه فیزیکی</h3>
+        <p>از نادیده گرفتن شعاع دسترسی مشتریان تا عدم تحلیل هزینه‌های سربار لجستیک و دسترسی حمل‌ونقل عمومی.</p>
+        <div class="blog-meta"><span>📅 ۱۵ آبان ۱۴۰۵</span> • <span>⏱️ ۸ دقیقه</span></div>
+      </div>
+      <div class="blog-card" data-article="5" data-cat="case">
+        <div style="font-size:12px;color:var(--jb-text2);margin-bottom:6px">مطالعات موردی</div>
+        <h3>بررسی مقایسه‌ای پتانسیل تجاری مناطق شمالی و مرکزی تهران برای داروخانه‌ها</h3>
+        <p>تحلیل داده‌های جمعیتی، رقبا و دسترسی درمانگاه‌ها با استفاده از موتور هوش مکانی جابیو.</p>
+        <div class="blog-meta"><span>📅 ۱۰ آبان ۱۴۰۵</span> • <span>⏱️ ۱۰ دقیقه</span></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="blog-modal" id="blogModal" hidden>
+  <div class="blog-modal-box">
+    <button type="button" class="blog-close" id="blogClose">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<footer class="ds-footer">
+    <div class="ds-footer-card">
+      <div class="ds-footer-main">
+        <div class="ds-footer-brand">
+          <div class="ds-footer-mark"><img class="brand-img" src="assets/logo.png" alt="" width="34" height="28"><span class="brand-word" dir="ltr" lang="en" translate="no"><i>ja</i><b>bio</b></span></div>
+          <p class="ds-footer-sub" data-en="Location intelligence for Iranian businesses." data-fa="هوش مکانی برای کسب‌وکارهای ایرانی.">هوش مکانی برای کسب‌وکارهای ایرانی.</p>
+          <a class="ds-footer-mail" href="#" data-social="email" data-social-self></a>
+          <div class="ds-footer-social"><a href="#" data-social="github" aria-label="github" title="github"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a><a href="#" data-social="twitter" aria-label="twitter" title="twitter"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="#" data-social="linkedin" aria-label="linkedin" title="linkedin"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56z"/></svg></a><a href="#" data-social="youtube" aria-label="youtube" title="youtube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.07 0 12 0 12s0 3.93.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.93 24 12 24 12s0-3.93-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg></a></div>
+        </div>
+        <div class="ds-footer-col">
+          <h3 data-en="Product" data-fa="محصول">محصول</h3>
+          <a href="/jabio.html" data-en="Analyze a location" data-fa="تحلیل مکان">تحلیل مکان</a>
+          <a href="/cities" data-en="15 Iranian cities" data-fa="۱۵ شهر ایران">۱۵ شهر ایران</a>
+          <a href="/categories.html" data-en="Business categories" data-fa="دسته‌بندی کسب‌وکارها">دسته‌بندی کسب‌وکارها</a>
+          <a href="/compare.html" data-en="Compare locations" data-fa="مقایسه مکان‌ها">مقایسه مکان‌ها</a>
+          <a href="/pricing" data-en="Pricing &amp; plans" data-fa="تعرفه‌ها و پلن‌ها">تعرفه‌ها و پلن‌ها</a>
+        </div>
+        <div class="ds-footer-col">
+          <h3 data-en="Learn" data-fa="یادگیری">یادگیری</h3>
+          <a href="/blog.html" data-en="Blog &amp; articles" data-fa="وبلاگ و مقالات">وبلاگ و مقالات</a>
+          <a href="/methodology" data-en="Scoring methodology" data-fa="روش‌شناسی مدل">روش‌شناسی مدل</a>
+          <a href="/guide.html" data-en="Location field guide" data-fa="راهنمای انتخاب مکان">راهنمای انتخاب مکان</a>
+          <a href="/examples.html" data-en="Worked examples" data-fa="نمونه تحلیل">نمونه تحلیل</a>
+          <a href="/faq.html" data-en="FAQ" data-fa="سوالات پرتکرار">سوالات پرتکرار</a>
+        </div>
+        <div class="ds-footer-col">
+          <h3 data-en="Company" data-fa="شرکت">شرکت</h3>
+          <a href="/about.html" data-en="About us" data-fa="درباره ما">درباره ما</a>
+          <a href="/contact.html" data-en="Contact us" data-fa="تماس با ما">تماس با ما</a>
+          <a href="/privacy.html" data-en="Privacy policy" data-fa="حریم خصوصی">حریم خصوصی</a>
+          <a href="/terms.html" data-en="Terms of service" data-fa="قوانین و مقررات">قوانین و مقررات</a>
+        </div>
+      </div>
+      <div class="ds-footer-bottom">
+        <p>© ۲۰۲۶ جابیو. کلیه حقوق برای جابیو محفوظ است. © 2026 Jabio. All rights reserved.</p>
+      </div>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var articles = {
+    '1': { title: 'چگونه بهترین مکان را برای افتتاح کافه و رستوران در کلان‌شهرها انتخاب کنیم؟', date: '۱ آذر ۱۴۰۵', read: '۷ دقیقه', content: 'موفقیت یک کافه بیش از کیفیت قهوه به مکان آن بستگی دارد. بررسی تراکم رقبای شعاعی، قدرت خرید مشتریان هدف و الگوهای تردد عابران پیاده سه ضلع اصلی موفقیت در مکان‌یابی است. با استفاده از سامانه جابیو، می‌توانید در کمتر از ۲ دقیقه شعاع ۱ کیلومتری هر نقطه را از نظر حضور رقبا و کشش بازار بررسی کنید.' },
+    '2': { title: 'نقش تحلیل تردد عابران (Foot Traffic) در افزایش فروش فروشگاه‌های زنجیره‌ای', date: '۲۸ آبان ۱۴۰۵', read: '۵ دقیقه', content: 'چگونه داده‌های تردد روزانه به مدیران برندها کمک می‌کند تا شعب جدید را با دقت بالای ۹۰ درصد پیش‌بینی کنند. تردد عابران پیاده در نزدیکی ایستگاه‌های مترو و مراکز خرید فاکتور حیاتی برای سوپرمارکت‌ها و فروشگاه‌های پوشاک است.' },
+    '3': { title: 'مدل‌سازی هگزبین (Hexbin) و کاربرد آن در تحلیل‌های پیشرفته فضای شهری', date: '۲۲ آبان ۱۴۰۵', read: '۶ دقیقه', content: 'چرا تحلیل شبکه‌ای مبتنی بر سلول‌های شش‌ضلعی نسبت به مرزهای سنتی محلات دقیق‌تر و کارآمدتر است؟ هگزبین‌ها اعوجاج مساحتی را از بین برده و تراکم دقیق جغرافیایی را نمایش می‌دهند.' },
+    '4': { title: '۵ اشتباه مرگبار استارتاپ‌ها در انتخاب دفتر کار و فروشگاه فیزیکی', date: '۱۵ آبان ۱۴۰۵', read: '۸ دقیقه', content: 'از نادیده گرفتن شعاع دسترسی مشتریان تا عدم تحلیل هزینه‌های سربار لجستیک و دسترسی حمل‌ونقل عمومی. شناخت دقیق بازار محلی از خطاهای پرهزینه جلوگیری می‌کند.' },
+    '5': { title: 'بررسی مقایسه‌ای پتانسیل تجاری مناطق شمالی و مرکزی تهران برای داروخانه‌ها', date: '۱۰ آبان ۱۴۰۵', read: '۱۰ دقیقه', content: 'تحلیل داده‌های جمعیتی، رقبا و دسترسی درمانگاه‌ها با استفاده از موتور هوش مکانی جابیو نشان می‌دهد که توزیع داروخانه‌ها در مناطق مرکزی نیاز به بازنگری دارد.' }
+  };
+
+  document.querySelectorAll('[data-article]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var id = this.getAttribute('data-article');
+      var art = articles[id];
+      if (!art) return;
+      document.getElementById('modalContent').innerHTML = '<h2 style="font-size:22px;margin-bottom:12px">' + art.title + '</h2><div style="font-size:12px;color:var(--jb-text2);margin-bottom:20px">📅 ' + art.date + ' • ⏱️ ' + art.read + ' مطالعه</div><p style="line-height:1.8;color:var(--jb-text);font-size:15px">' + art.content + '</p>';
+      document.getElementById('blogModal').hidden = false;
+    });
+  });
+
+  document.getElementById('blogClose').addEventListener('click', function () {
+    document.getElementById('blogModal').hidden = true;
+  });
+  document.getElementById('blogModal').addEventListener('click', function (e) {
+    if (e.target === this) this.hidden = true;
+  });
+
+  document.querySelectorAll('.blog-cat-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.blog-cat-btn').forEach(function (b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      var cat = this.getAttribute('data-cat');
+      document.querySelectorAll('.blog-grid .blog-card').forEach(function (card) {
+        if (cat === 'all' || card.getAttribute('data-cat') === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  var search = document.getElementById('blogSearch');
+  if (search) {
+    search.addEventListener('input', function () {
+      var q = this.value.toLowerCase().trim();
+      document.querySelectorAll('.blog-grid .blog-card').forEach(function (card) {
+        var text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    });
+  }
+});
+</script>
+</body>
+</html>

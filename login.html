@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<!-- Jabio — Login Page v3.0 — with original 2.5D wizard rig -->
+<html lang="en" dir="ltr" data-title-en="Sign In or Create Account – Jabio" data-title-fa="ورود یا ساخت حساب کاربری – جابیو" data-desc-en="Sign in to your Jabio account to sync saved business location analyses and shortlisted spots across devices." data-desc-fa="وارد حساب کاربری جابیو شوید تا تحلیل‌های مکان و نقاط ذخیره‌شده خود را روی دستگاه‌های مختلف همگام نگه دارید.">
+<head>
+<meta charset="UTF-8"/>
+<script>document.documentElement.setAttribute('data-theme','light');try{if(localStorage.getItem('ga_theme')==='dark')document.documentElement.removeAttribute('data-theme')}catch(e){}</script>
+<script>try{if((new URLSearchParams(location.search).get('lang')||localStorage.getItem('ga_lang'))==='fa'){var d=document.documentElement;d.lang='fa';d.dir='rtl';['Regular','Bold'].forEach(function(w){var l=document.createElement('link');l.rel='preload';l.as='font';l.type='font/woff2';l.crossOrigin='';l.href='assets/fonts/Vazirmatn-'+w+'.woff2';document.head.appendChild(l);});}}catch(e){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="theme-color" content="#000000"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<title>Sign In or Create Account – Jabio</title>
+<meta name="description" content="Sign in to your Jabio account to sync saved business location analyses and shortlisted spots across devices.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jabio">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fa_IR">
+<meta property="og:title" content="Sign In or Create Account – Jabio">
+<meta property="og:description" content="Sign in to your Jabio account to sync saved business location analyses and shortlisted spots across devices.">
+<meta property="og:url" content="__CANONICAL_URL__">
+<meta property="og:image" content="__SITE_URL__/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Jabio – Right Business, Right Place">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sign In or Create Account – Jabio">
+<meta name="twitter:description" content="Sign in to your Jabio account to sync saved business location analyses and shortlisted spots across devices.">
+<meta name="twitter:image" content="__SITE_URL__/assets/og.png">
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./assets/vendor/three/build/three.module.js",
+    "three/addons/": "./assets/vendor/three/jsm/"
+  }
+}
+</script>
+<style>
+/* ── reset ──────────────────────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --page:#000;
+  --tonal:rgba(255,255,255,.08);
+  --tonal-hover:rgba(255,255,255,.16);
+  --border:rgba(255,255,255,.04);
+  --border-hover:rgba(255,255,255,.08);
+  --text:#fff;
+  --text-2:#BBBBBD;
+  --text-3:#878D99;
+  --error:#E5484D;
+  /* Jabio brand — replaces LootRun sage/iris/mint */
+  --geo-a:#ACF7F0;   /* emerald  */
+  --geo-b:#C2C3F5;   /* sky blue */
+  --geo-c:#D9F2C7;   /* violet   */
+  --ease:cubic-bezier(.4,0,.2,1);
+  --spring:cubic-bezier(.34,1.4,.5,1);
+}
+html,body{margin:0;min-height:100%;background:var(--page);color:var(--text);
+  font-family:'Poppins',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html[dir="rtl"], html[lang="fa"], .fa-text { font-family: 'Vazirmatn', 'Poppins', sans-serif !important; }
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:0}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--geo-b);outline-offset:2px}
+p{margin:0}
+
+/* ── page ───────────────────────────────────────────────────────────── */
+.page{position:relative;min-height:100vh;min-height:100dvh;display:flex;
+  flex-direction:column;align-items:center;justify-content:space-between;
+  gap:48px;padding:32px 40px 24px;overflow:hidden;isolation:isolate}
+
+/* light: horizon glow + two diagonal beams (geo blue instead of white) */
+.light{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.horizon{position:absolute;left:0;right:0;top:-52px;height:230px;
+  background:linear-gradient(180deg,rgba(194,195,245,.13) 0%,rgba(194,195,245,.04) 45%,rgba(194,195,245,0) 100%)}
+.beam{position:absolute;top:0;height:2253px;opacity:.5;filter:blur(38.5px);
+  transform:translate(-50%,-50%) rotate(20deg);
+  background:linear-gradient(90deg,rgba(194,195,245,0) 0%,rgba(194,195,245,.055) 42%,rgba(194,195,245,.055) 58%,rgba(194,195,245,0) 100%)}
+.beam.b1{left:calc(50% + 288px);top:583px;width:220px}
+.beam.b2{left:calc(50% - 345px);top:255px;width:300px}
+
+/* map grid subtle background */
+.map-grid{position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(194,195,245,.04) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(194,195,245,.04) 1px,transparent 1px);
+  background-size:50px 50px;
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 0%,transparent 70%);
+          mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,#000 0%,transparent 70%)}
+
+/* ── top bar ────────────────────────────────────────────────────────── */
+.bar{width:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:10px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;justify-self:center}
+.logo-icon{display:flex;align-items:center;flex:0 0 auto}
+.logo-icon .brand-img{height:52px;width:auto}
+.brand-word{font-family:'Poppins',sans-serif;font-weight:600;font-size:26px;letter-spacing:.3px;line-height:1;direction:ltr;unicode-bidi:isolate;display:inline-flex;margin-inline-start:10px;white-space:nowrap}
+.brand-word i{font-style:normal;color:#F4F6FF}.brand-word b{font-weight:600;color:#39BFC2}
+[data-theme="light"] .brand-word i{color:#35296E}[data-theme="light"] .brand-word b{color:#1F9EA2}
+.logo-name{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;
+  background:linear-gradient(120deg,var(--geo-a),var(--geo-b),var(--geo-c));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* tonal button */
+.btn-tonal{display:inline-flex;align-items:center;justify-content:center;
+  border-radius:999px;background:var(--tonal);-webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px);font-weight:500;white-space:nowrap;
+  transition:background-color .18s var(--ease),transform .18s var(--ease)}
+.btn-tonal:hover{background:var(--tonal-hover)}
+.btn-tonal:active{transform:scale(.98)}
+.btn-xs{height:32px;min-width:80px;padding:6px 12px;gap:4px;font-size:12px;justify-self:start}
+.btn-xs .lbl{padding:0 2px}
+.btn-xs img{width:16px;height:16px;display:block}
+.btn-sm{width:100%;height:40px;padding:8px 16px;gap:6px;font-size:14px}
+.btn-sm img{width:20px;height:20px;display:block}
+.btn-sm .lbl{padding:0 4px}
+.btn-link{display:inline-flex;align-items:center;justify-content:center;height:32px;
+  padding:6px 12px;border-radius:999px;font-size:12px;font-weight:500;color:var(--text);
+  transition:color .18s var(--ease),background-color .18s var(--ease)}
+.btn-link:hover{background:rgba(255,255,255,.06)}
+
+/* lang button */
+.lang-btn{display:flex;align-items:center;gap:5px;height:32px;padding:0 12px;
+  border:1px solid rgba(255,255,255,.12);border-radius:999px;background:var(--tonal);
+  color:var(--text-2);font-size:12px;font-weight:500;cursor:pointer;
+  transition:background .18s,color .18s;justify-self:end}
+.lang-btn:hover{background:var(--tonal-hover);color:var(--text)}
+
+/* ── column ─────────────────────────────────────────────────────────── */
+.col{position:relative;width:min(400px,100%);display:flex;flex-direction:column;gap:32px}
+
+/* jabio brand watermark behind the form */
+.brush{position:absolute;left:50%;top:50%;width:min(760px,96vw);
+  transform:translate(-50%,-50%) rotate(-12deg);
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;user-select:none;z-index:-1}
+.brush-word{font-family:'Poppins',system-ui,sans-serif;font-weight:600;
+  font-size:clamp(140px,22vw,230px);letter-spacing:-.04em;line-height:.9;
+  direction:ltr;unicode-bidi:isolate;display:inline-flex;white-space:nowrap}
+.brush-word i{font-style:normal;color:rgba(244,246,255,.045)}
+.brush-word b{font-weight:600;color:rgba(57,191,194,.065)}
+[data-theme="light"] .brush-word i{color:rgba(53,41,110,.032)}
+[data-theme="light"] .brush-word b{color:rgba(31,158,162,.042)}
+
+/* intro */
+.intro{display:flex;flex-direction:column;align-items:center;gap:32px;text-align:center}
+.heading{display:flex;flex-direction:column;align-items:center;gap:12px}
+.eyebrow{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:500;line-height:normal;color:var(--text-3)}
+.eyebrow img{width:6px;height:6px;display:block}
+h1{margin:0;font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;font-size:48px;line-height:1.1;letter-spacing:-2.4px;white-space:nowrap}
+.sub{font-size:14px;line-height:normal;color:var(--text-3)}
+.rule{width:44px;height:1px;background:rgba(255,255,255,.16);opacity:0}
+
+/* ── form ───────────────────────────────────────────────────────────── */
+.form{display:flex;flex-direction:column;gap:32px}
+.fields{position:relative;display:flex;flex-direction:column;gap:16px}
+
+/* Input */
+.field{position:relative;width:100%;display:flex;flex-direction:column;gap:4px}
+.field-label{display:flex;justify-content:space-between;gap:8px;padding:0 8px;
+  font-size:12px;line-height:normal;color:var(--text-2)}
+.field-msg{position:absolute;left:8px;top:calc(100% + 2px);line-height:14px;
+  white-space:nowrap;color:var(--error);text-align:left;opacity:0;
+  transform:translateY(-2px);transition:opacity .18s var(--ease),transform .18s var(--ease)}
+.field.is-error .field-msg{opacity:1;transform:none}
+.field{transition:margin-bottom .18s var(--ease)}
+.field.is-error{margin-bottom:12px}
+#f-email{position:relative}
+
+/* Input new */
+.input{position:relative;width:100%;height:48px;border-radius:12px;
+  background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;padding:0 14px;gap:8px;
+  transition:border-color .18s var(--ease),background .18s}
+.input:focus-within{background:rgba(255,255,255,.08);border-color:rgba(194,195,245,.5)}
+.field.is-error .input{border-color:var(--error)}
+.input input{background:none;border:none;outline:none;font:inherit;font-size:14px;
+  color:var(--text);width:100%;height:100%}
+.input input::placeholder{color:var(--text-3)}
+
+/* eye toggle */
+.eye{color:var(--text-3);padding:0;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  width:20px;height:20px;flex:0 0 auto;transition:color .15s}
+.eye:hover{color:var(--text)}
+.eye svg{width:20px;height:20px;display:block}
+.eye .slash{transition:stroke-dashoffset .22s var(--ease)}
+.eye[aria-pressed="false"] .slash{stroke-dashoffset:24}
+
+/* submit */
+.btn-primary{width:100%;height:48px;border-radius:12px;
+  background:linear-gradient(120deg,var(--geo-a),var(--geo-b),var(--geo-c));
+  color:#000;font-weight:600;font-size:15px;border:none;cursor:pointer;
+  position:relative;overflow:hidden;display:flex;align-items:center;
+  justify-content:center;gap:8px;transition:filter .18s}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-primary.is-loading{pointer-events:none;opacity:.75}
+.spin{width:16px;height:16px;border:2px solid rgba(0,0,0,.2);border-top-color:#000;
+  border-radius:50%;animation:spin .7s linear infinite;display:none}
+.btn-primary.is-loading .spin{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.submit-row{display:flex;align-items:center;justify-content:flex-end}
+.grad-text{background:linear-gradient(120deg,var(--geo-a),var(--geo-b),var(--geo-c));
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  font-size:12px;font-weight:500}
+
+/* ── THE 3D CHARACTER RIG ────────────────────────────────────────────────
+   196×140 WebGL Three.js rig; rim sits at 68% from top so 95px sits
+   above the email input rim and fingertips curl cleanly over the border.
+──────────────────────────────────────────────────────────────────────── */
+.email-anchor{position:relative}
+.wizard-rig{
+  position:absolute;
+  width:196px;
+  height:140px;
+  left:50%;
+  top:0;
+  transform:translate(-50%, -68%);
+  z-index:3;
+  pointer-events:none;
+  user-select:none;
+  contain:layout style;
+}
+.wizard-rig > canvas,
+.wizard-rig > svg{
+  position:absolute;left:0;top:0;width:100%;height:100%;
+  display:block;overflow:visible;
+}
+/* shake on error */
+.wizard-rig.shake{animation:wzShake .42s var(--ease)}
+@keyframes wzShake{
+  20%{translate:-5px 0}40%{translate:5px 0}
+  60%{translate:-3px 0}80%{translate:2px 0}
+}
+/* hop on success */
+.wizard-rig.hop{animation:wzHop .6s var(--spring)}
+@keyframes wzHop{35%{translate:0 -8px}70%{translate:0 1px}}
+
+/* ── or / social ────────────────────────────────────────────────────── */
+.actions{display:flex;flex-direction:column;gap:16px}
+.sep{display:flex;align-items:center;gap:12px;font-size:12px;line-height:normal;color:var(--text-3)}
+.sep::before,.sep::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
+.social{display:flex;flex-direction:column;gap:8px}
+
+/* ── prompt & footer ────────────────────────────────────────────────── */
+.prompt{font-size:13px;color:var(--text-3);display:flex;align-items:center;gap:8px}
+
+.foot{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.copy{font-size:12px;line-height:normal;color:var(--text-3)}
+.links{display:flex;align-items:center;gap:12px}
+
+/* signing overlay */
+.signing{position:fixed;inset:0;z-index:50;display:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:22px;
+  background:rgba(0,0,0,.85);-webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(10px);font-size:15px;font-weight:500}
+.signing.on{display:flex}
+.signing i{width:54px;height:54px;border-radius:50%;
+  background:conic-gradient(var(--geo-a),var(--geo-c),var(--geo-b),var(--geo-c),var(--geo-a));
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 0);
+           mask:radial-gradient(farthest-side,transparent calc(100% - 5px),#000 0);
+  animation:spin .9s linear infinite}
+
+/* notice (login error) */
+.notice{font-size:13px;color:var(--error);min-height:1lh;line-height:1.55}
+.notice.ok{color:var(--geo-a)}
+[data-theme="light"] .notice.ok{color:#0F766E}
+
+/* register-only adaptive fields & verification card */
+.reg-only[hidden]{display:none!important}
+.seg-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:4px;
+  border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+[data-theme="light"] .seg-switch{background:#F1F5F9;border-color:rgba(17,17,19,.1)}
+.seg-btn{height:38px;border-radius:9px;font-size:13px;font-weight:600;color:var(--text-2);
+  display:flex;align-items:center;justify-content:center;gap:6px;transition:background .18s var(--ease),color .18s}
+.seg-btn.active{background:linear-gradient(120deg,var(--geo-a),var(--geo-b),var(--geo-c));color:#0B0D12}
+.field-hint{font-size:11.5px;color:var(--text-3);padding:0 8px;line-height:1.5}
+.org-fields{display:flex;flex-direction:column;gap:14px}
+.org-fields[hidden]{display:none!important}
+
+.verify-box{display:flex;flex-direction:column;gap:16px;padding:24px;border-radius:18px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12)}
+[data-theme="light"] .verify-box{background:#FFFFFF;border-color:rgba(17,17,19,.12);box-shadow:0 12px 32px rgba(17,17,19,.06)}
+.verify-box[hidden]{display:none!important}
+.verify-head h2{font-size:18px;font-weight:700;margin:0 0 6px}
+.verify-head p{font-size:13px;color:var(--text-2);line-height:1.7}
+.preview-code{padding:12px 14px;border-radius:12px;border:1px dashed rgba(57,191,194,.45);
+  background:rgba(57,191,194,.08);font-size:12.5px;color:var(--text);display:flex;
+  align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.preview-code[hidden]{display:none!important}
+.preview-code strong{font-family:ui-monospace,Consolas,monospace;font-size:20px;letter-spacing:4px;
+  color:#39BFC2;font-variant-numeric:tabular-nums;direction:ltr}
+[data-theme="light"] .preview-code strong{color:#0F766E}
+.verify-actions{display:flex;gap:10px;flex-wrap:wrap}
+.verify-actions .btn-tonal{flex:1;min-width:130px;height:40px;font-size:13px;border-radius:10px}
+.otp-input{text-align:center;letter-spacing:6px;font-family:ui-monospace,Consolas,monospace;
+  font-size:18px!important;font-weight:700;font-variant-numeric:tabular-nums;direction:ltr}
+
+/* lang panel */
+.lang-overlay{position:fixed;inset:0;z-index:2147483646;display:none}
+.lang-overlay.open{display:block}
+.lang-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.6)}
+.lang-panel{position:absolute;top:72px;right:40px;width:220px;
+  background:#141414;border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:6px;z-index:1;
+  box-shadow:0 20px 50px rgba(0,0,0,.7);
+  animation:pIn .18s var(--ease)}
+@keyframes pIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.lang-option{display:flex;align-items:center;gap:10px;height:42px;padding:0 12px;
+  border-radius:9px;cursor:pointer;font-size:13px;color:var(--text-2);
+  transition:background .15s,color .15s}
+.lang-option:hover,.lang-option.active{background:var(--tonal);color:var(--text)}
+.lang-flag{font-size:18px}
+.lang-label{font-weight:500}
+.fa-text{font-family:'Vazirmatn',sans-serif}
+
+/* ── phones ─────────────────────────────────────────────────────────── */
+@media(max-width:560px){
+  .page{padding:20px 16px 20px;gap:40px}
+  .col{gap:28px}
+  h1{font-size:42px}
+  .foot{flex-direction:column-reverse;gap:8px}
+  .links{gap:8px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+<link rel="stylesheet" href="assets/shared.css">
+<link rel="stylesheet" href="assets/design-system.css">
+<link rel="stylesheet" href="assets/theme-light.css">
+</head>
+<body>
+
+<!-- ambient light -->
+<div class="light" aria-hidden="true">
+  <div class="horizon"></div>
+  <div class="beam b1"></div>
+  <div class="beam b2"></div>
+</div>
+<div class="map-grid" aria-hidden="true"></div>
+
+<!-- language panel -->
+<div class="lang-overlay" id="langOverlay">
+  <div class="lang-backdrop" id="langBackdrop"></div>
+  <div class="lang-panel">
+    <div class="lang-option active" data-lang="en">
+      <span class="lang-flag">🇬🇧</span>
+      <div><div class="lang-label">English</div></div>
+    </div>
+    <div class="lang-option" data-lang="fa">
+      <span class="lang-flag">🇮🇷</span>
+      <div><div class="lang-label fa-text">فارسی</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ── top bar ────────────────────────────────────────────────────── -->
+  <div class="bar">
+
+    <a class="btn-tonal btn-xs" href="index.html" id="backBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="lbl" data-en="Back" data-fa="بازگشت">Back</span>
+    </a>
+
+    <a class="logo" href="index.html" aria-label="Jabio home">
+      <div class="logo-icon"><img class="brand-img" src="assets/logo.png" alt="" width="40" height="33"></div>
+      <span class="brand-word" dir="ltr" lang="en" translate="no"><i>ja</i><b>bio</b></span>
+    </a>
+
+    <button class="lang-btn" id="langToggleBtn" aria-label="Switch language" aria-expanded="false">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M12 2a15.3 15.3 0 010 20M2 12h20" stroke="currentColor" stroke-width="1.8"/>
+      </svg>
+      <span id="langLabel">EN</span>
+    </button>
+
+  </div>
+
+  <!-- ── column ─────────────────────────────────────────────────────── -->
+  <main class="col">
+
+    <!-- jabio brand watermark behind the form -->
+    <div class="brush" aria-hidden="true">
+      <span class="brush-word" dir="ltr" lang="en" translate="no"><i>ja</i><b>bio</b></span>
+    </div>
+
+    <div class="intro">
+      <div class="heading">
+        <p class="eyebrow">
+          <img src="data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='3' cy='3' r='3' fill='%236EE7B7'/%3E%3C/svg%3E" alt="">
+          <span data-en="Jabio Platform" data-fa="پلتفرم Jabio">Jabio Platform</span>
+        </p>
+        <h1 data-en="SIGN IN" data-fa="ورود">SIGN IN</h1>
+      </div>
+      <p class="sub" data-en="Access your saved analyses and reports."
+                     data-fa="به تحلیل‌ها و گزارش‌های ذخیره‌شده‌تان دسترسی پیدا کنید.">
+        Access your saved analyses and reports.
+      </p>
+      <div class="rule"></div>
+    </div>
+
+    <form class="form" id="loginForm" novalidate>
+      <div class="fields">
+
+        <div class="field" id="f-email">
+          <label class="field-label" for="email">
+            <span id="emailLabel" data-en="Email or phone number" data-fa="ایمیل یا شماره موبایل">Email or phone number</span>
+            <span class="field-msg" id="email-msg" aria-live="polite"
+                  data-en="Enter a valid email or mobile number"
+                  data-fa="ایمیل یا شماره موبایل معتبر وارد کنید">Enter a valid email or mobile number</span>
+          </label>
+          <!-- The wizard rig lives here and grips the rim of this input -->
+          <div class="email-anchor">
+            <div class="wizard-rig" aria-hidden="true" data-state="idle"></div>
+            <div class="input">
+              <input id="email" name="email" type="text" inputmode="email"
+                     autocomplete="username" placeholder="your@email.com / 0912..."
+                     aria-describedby="email-msg" spellcheck="false" dir="auto">
+            </div>
+          </div>
+        </div>
+
+        <div class="field reg-only" id="f-name" hidden>
+          <label class="field-label" for="displayName">
+            <span data-en="Full name" data-fa="نام و نام خانوادگی">Full name</span>
+          </label>
+          <div class="input">
+            <input id="displayName" name="displayName" type="text" maxlength="80"
+                   autocomplete="name" placeholder="e.g. Ali Rezaei">
+          </div>
+        </div>
+
+        <div class="field reg-only" id="f-phone" hidden>
+          <label class="field-label" for="regPhone">
+            <span data-en="Mobile phone (optional — for phone login &amp; SMS recovery)" data-fa="شماره موبایل (اختیاری — برای ورود و بازیابی پیامکی)">Mobile phone (optional)</span>
+            <span class="field-msg" id="phone-msg" aria-live="polite"
+                  data-en="Enter a valid mobile number (e.g. 09123456789)"
+                  data-fa="شماره موبایل معتبر وارد کنید (مثلاً 09123456789)">Enter a valid mobile number</span>
+          </label>
+          <div class="input">
+            <input id="regPhone" name="phone" type="tel" inputmode="tel" dir="ltr"
+                   autocomplete="tel" placeholder="0912 345 6789" aria-describedby="phone-msg">
+          </div>
+        </div>
+
+        <div class="field reg-only" id="f-accType" hidden>
+          <label class="field-label">
+            <span data-en="Profile mode" data-fa="نوع پروفایل کاربری">Profile mode</span>
+          </label>
+          <div class="seg-switch" role="radiogroup" aria-label="Profile mode">
+            <button type="button" class="seg-btn active" data-acc-type="personal" aria-checked="true">
+              <span data-en="Personal" data-fa="شخصی (ساده)">Personal</span>
+            </button>
+            <button type="button" class="seg-btn" data-acc-type="organization" aria-checked="false">
+              <span data-en="Organization" data-fa="سازمانی / کسب‌وکار">Organization</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="org-fields reg-only" id="orgFields" hidden>
+          <div class="field" id="f-orgName">
+            <label class="field-label" for="orgName">
+              <span data-en="Company or brand name" data-fa="نام سازمان یا برند">Company or brand name</span>
+            </label>
+            <div class="input">
+              <input id="orgName" name="organizationName" type="text" maxlength="100"
+                     placeholder="e.g. Lamiz Coffee">
+            </div>
+          </div>
+          <div class="field" id="f-roleTitle">
+            <label class="field-label" for="roleTitle">
+              <span data-en="Your role (optional)" data-fa="سمت سازمانی (اختیاری)">Your role (optional)</span>
+            </label>
+            <div class="input">
+              <input id="roleTitle" name="roleTitle" type="text" maxlength="80"
+                     placeholder="e.g. Expansion Manager">
+            </div>
+          </div>
+        </div>
+
+        <div class="field" id="f-pw">
+          <label class="field-label" for="password">
+            <span data-en="Password" data-fa="رمز عبور">Password</span>
+            <span class="field-msg" id="pw-msg" aria-live="polite"
+                  data-en="Enter your password"
+                  data-fa="رمز عبور خود را وارد کنید">Enter your password</span>
+          </label>
+          <div class="input password-shell">
+            <input id="password" name="password" type="password"
+                   autocomplete="current-password" placeholder="••••••••"
+                   aria-describedby="pw-msg">
+            <button class="eye" id="eye" type="button"
+                    aria-label="Show password" aria-pressed="false">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M12.3584 10C12.3584 8.6952 11.3048 7.64164 10 7.6416C8.69518 7.6416 7.6416 8.69518 7.6416 10C7.64164 11.3048 8.6952 12.3584 10 12.3584C11.3048 12.3584 12.3584 11.3048 12.3584 10ZM13.6084 10C13.6084 11.9951 11.9951 13.6084 10 13.6084C8.00484 13.6084 6.39164 11.9951 6.3916 10C6.3916 8.00482 8.00482 6.3916 10 6.3916C11.9951 6.39164 13.6084 8.00484 13.6084 10Z"/>
+                <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M10.0002 2.47518C13.2065 2.47523 16.1255 4.36569 18.1179 7.49715C18.5724 8.20922 18.7795 9.12197 18.7795 9.99634C18.7794 10.8706 18.5731 11.7827 18.1187 12.4947L18.1179 12.4939C16.1255 15.6258 13.2068 17.5166 10.0002 17.5167C6.79341 17.5167 3.87334 15.6261 1.8809 12.4939C1.42712 11.7821 1.22096 10.87 1.22091 9.99634C1.22091 9.12197 1.4272 8.20922 1.88171 7.49715C3.87414 4.3655 6.79374 2.47518 10.0002 2.47518ZM10.0002 3.72518C7.32366 3.72518 4.75982 5.30157 2.93559 8.16935C2.64014 8.63228 2.47091 9.29576 2.47091 9.99634C2.47095 10.6092 2.6004 11.1929 2.83061 11.6394L2.93559 11.8225C4.75981 14.6902 7.32369 16.2667 10.0002 16.2667C12.6766 16.2666 15.2398 14.6908 17.064 11.8233L17.0648 11.8225C17.3603 11.3597 17.5294 10.6968 17.5295 9.99634C17.5295 9.29582 17.3602 8.63309 17.0648 8.17017L17.064 8.16935C15.2398 5.30161 12.6767 3.72523 10.0002 3.72518Z"/>
+                <path class="slash" d="M3.2 3.2 16.8 16.8" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-dasharray="24" stroke-dashoffset="0"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-primary" type="submit" id="submit">
+          <span class="spin" aria-hidden="true"></span>
+          <span class="lbl" data-en="Sign in" data-fa="ورود">Sign in</span>
+        </button>
+
+        <div class="submit-row">
+          <p class="notice" id="notice" role="alert"></p>
+          <a class="grad-text" href="/forgot-password" id="forgot"
+             data-en="Forgot password?" data-fa="بازیابی رمز عبور؟">
+            Forgot password?
+          </a>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="sep" data-en="or" data-fa="یا">or</div>
+        <div class="social">
+          <button class="btn-tonal btn-sm" type="button" id="btnGoogle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92
+                       c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57
+                       c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77
+                       c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84
+                       C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18
+                       C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15
+                       C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84
+                       c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <span class="lbl" id="googleLbl" data-en="Verify &amp; continue with Google" data-fa="ورود و تایید با حساب گوگل">Verify &amp; continue with Google</span>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Inline post-registration email verification step -->
+    <section class="verify-box" id="verifyBox" hidden aria-live="polite">
+      <div class="verify-head">
+        <h2 data-en="Verify your email address" data-fa="تایید آدرس ایمیل">Verify your email address</h2>
+        <p id="verifyDesc" data-en="Enter the 6-digit verification code sent to your email." data-fa="کد تایید ۶ رقمی ارسال‌شده به ایمیل خود را وارد کنید.">Enter the 6-digit verification code sent to your email.</p>
+      </div>
+      <div class="preview-code" id="verifyPreview" hidden>
+        <span data-en="SMTP not configured — test code:" data-fa="حالت آزمایشی (بدون کلید SMTP) — کد تایید:">Test code:</span>
+        <strong id="verifyPreviewCode">000000</strong>
+      </div>
+      <form id="verifyForm" style="display:flex;flex-direction:column;gap:14px" novalidate>
+        <div class="input">
+          <input class="otp-input" id="verifyCodeInput" type="text" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="••••••">
+        </div>
+        <p class="notice" id="verifyNotice" role="alert"></p>
+        <button class="btn-primary" type="submit" id="verifySubmit">
+          <span class="lbl" data-en="Verify email &amp; open profile" data-fa="تایید ایمیل و ورود به پروفایل">Verify email &amp; open profile</span>
+        </button>
+        <div class="verify-actions">
+          <button class="btn-tonal" type="button" id="verifyResend" data-en="Resend code" data-fa="ارسال مجدد کد">Resend code</button>
+          <a class="btn-tonal" href="/account" data-en="Verify later" data-fa="تایید در پروفایل">Verify later</a>
+        </div>
+      </form>
+    </section>
+
+    <p class="prompt" id="authPrompt">
+      <span data-en="Don't have an account?" data-fa="حساب کاربری ندارید؟">Don't have an account?</span>
+      <a class="btn-tonal btn-xs" href="login.html?register=1">
+        <span class="lbl" data-en="Register" data-fa="ثبت‌نام">Register</span>
+      </a>
+    </p>
+  </main>
+
+  <footer class="foot">
+    <p class="copy">© 2026 Jabio</p>
+    <nav class="links" aria-label="Legal">
+      <a class="btn-link" href="contact.html" data-en="Support" data-fa="پشتیبانی">Support</a>
+    </nav>
+  </footer>
+</div>
+
+<!-- signing overlay -->
+<div class="signing" id="signing" aria-live="polite">
+  <i></i>
+  <div data-en="Signing you in…" data-fa="در حال ورود…">Signing you in…</div>
+</div>
+
+<!-- ── 3D CHARACTER BUNDLE ──────────────────────────────────────── -->
+<script src="assets/account.js"></script>
+<script type="module">
+import './assets/wizard.bundle.js?v=3d-2';
+const form = document.getElementById('loginForm');
+if (form && window.LRWizard) {
+  form.querySelector('.wizard-rig').innerHTML = window.LRWizard.wizardMarkup();
+  window.LRWizard.mountWizard(form);
+}
+</script>
+
+<!-- ── form logic ──────────────────────────────────────────────────── -->
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var email = $('email'), pw = $('password'), eye = $('eye'),
+      submit = $('submit'), wiz = document.querySelector('.wizard-rig'),
+      fEmail = $('f-email'), fPw = $('f-pw'), fPhone = $('f-phone'), notice = $('notice');
+  var displayNameEl = $('displayName'), regPhoneEl = $('regPhone'),
+      orgFieldsEl = $('orgFields'), orgNameEl = $('orgName'), roleTitleEl = $('roleTitle');
+  var loginForm = $('loginForm'), verifyBox = $('verifyBox'), verifyForm = $('verifyForm'),
+      verifyCodeInput = $('verifyCodeInput'), verifyPreview = $('verifyPreview'),
+      verifyPreviewCode = $('verifyPreviewCode'), verifyNotice = $('verifyNotice');
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var registering = new URLSearchParams(location.search).get('register') === '1';
+  var selectedAccountType = 'personal';
+  var currentLang = (new URLSearchParams(location.search).get('lang') || localStorage.getItem('ga_lang') || 'en');
+
+  function toLatinDigits(s) {
+    var fa = '۰۱۲۳۴۵۶۷۸۹', ar = '٠١٢٣٤٥٦٧٨٩';
+    return String(s || '')
+      .replace(/[۰-۹]/g, function (d) { return String(fa.indexOf(d)); })
+      .replace(/[٠-٩]/g, function (d) { return String(ar.indexOf(d)); });
+  }
+  function isPhoneLike(v) {
+    var c = toLatinDigits(v).replace(/[\s\-().]/g, '');
+    return /^(09\d{9}|9\d{9}|00989\d{9}|989\d{9}|\+989\d{9}|\+[1-9]\d{8,14})$/.test(c);
+  }
+  function tr(en, fa) { return currentLang === 'fa' ? fa : en; }
+
+  /* ── back ──────────────────────────────────────────────────────── */
+  $('backBtn').addEventListener('click', function (e) {
+    if (document.referrer && new URL(document.referrer).origin === location.origin && history.length > 1) {
+      e.preventDefault(); history.back();
+    }
+  });
+
+  /* ── show / hide password ──────────────────────────────────────── */
+  eye.addEventListener('mousedown', function (e) { e.preventDefault(); });
+  eye.addEventListener('click', function () {
+    var show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    eye.setAttribute('aria-pressed', String(show));
+    eye.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    var slash = eye.querySelector('.slash');
+    if (slash) slash.style.strokeDashoffset = show ? '24' : '0';
+  });
+
+  /* ── account type switcher (registration) ──────────────────────── */
+  document.querySelectorAll('[data-acc-type]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      selectedAccountType = btn.getAttribute('data-acc-type') === 'organization' ? 'organization' : 'personal';
+      document.querySelectorAll('[data-acc-type]').forEach(function (b) {
+        var on = b === btn;
+        b.classList.toggle('active', on);
+        b.setAttribute('aria-checked', String(on));
+      });
+      if (orgFieldsEl) orgFieldsEl.hidden = selectedAccountType !== 'organization';
+    });
+  });
+
+  /* ── validation ────────────────────────────────────────────────── */
+  function identifierOk() {
+    var v = email.value.trim();
+    if (registering) return EMAIL_RE.test(v);
+    return EMAIL_RE.test(v) || isPhoneLike(v);
+  }
+  function regPhoneOk() {
+    if (!registering || !regPhoneEl) return true;
+    var v = regPhoneEl.value.trim();
+    return !v || isPhoneLike(v);
+  }
+
+  function validate() {
+    if (fEmail.classList.contains('silent')) {
+      fEmail.classList.remove('is-error', 'silent'); fPw.classList.remove('is-error');
+      $('pw-msg').textContent = tr('Enter your password', 'رمز عبور خود را وارد کنید');
+    }
+    if (fEmail.classList.contains('is-error') && identifierOk()) fEmail.classList.remove('is-error');
+    if (fPhone && fPhone.classList.contains('is-error') && regPhoneOk()) fPhone.classList.remove('is-error');
+    if (fPw.classList.contains('is-error') && pw.value && this === pw) {
+      fPw.classList.remove('is-error');
+      $('pw-msg').textContent = tr('Enter your password', 'رمز عبور خود را وارد کنید');
+    }
+    if (notice.textContent) { notice.textContent = ''; notice.classList.remove('ok'); }
+  }
+  [email, pw, regPhoneEl].filter(Boolean).forEach(function (el) { el.addEventListener('input', validate); });
+  email.addEventListener('blur', function () {
+    var v = email.value.trim();
+    fEmail.classList.toggle('is-error', v.length > 0 && !identifierOk());
+  });
+  if (regPhoneEl) {
+    regPhoneEl.addEventListener('blur', function () {
+      var v = regPhoneEl.value.trim();
+      fPhone.classList.toggle('is-error', v.length > 0 && !isPhoneLike(v));
+    });
+  }
+
+  function resetSubmitBtn() {
+    submit.classList.remove('is-loading');
+    submit.querySelector('.lbl').textContent = registering
+      ? tr('Create account', 'ساخت حساب کاربری')
+      : tr('Sign in', 'ورود');
+  }
+
+  function fail(msg) {
+    resetSubmitBtn();
+    notice.classList.remove('ok');
+    notice.textContent = msg;
+    fPw.classList.add('is-error');
+    fEmail.classList.add('is-error', 'silent');
+    wiz.classList.remove('shake'); void wiz.offsetWidth; wiz.classList.add('shake');
+    pw.focus(); pw.select();
+  }
+
+  function signedIn(dest) {
+    wiz.classList.remove('hop'); void wiz.offsetWidth; wiz.classList.add('hop');
+    $('signing').classList.add('on');
+    setTimeout(function () { location.href = dest || '/account'; }, 900);
+  }
+
+  function showEmailVerification(res) {
+    resetSubmitBtn();
+    loginForm.hidden = true;
+    var prompt = $('authPrompt');
+    if (prompt) prompt.hidden = true;
+    verifyBox.hidden = false;
+    var v = (res && res.verification) || {};
+    var desc = $('verifyDesc');
+    if (v.delivered) {
+      desc.textContent = tr(
+        'We sent a 6-digit verification code to ' + (res.email || '') + '. Enter it below within 15 minutes.',
+        'کد تایید ۶ رقمی به ایمیل ' + (res.email || '') + ' ارسال شد. آن را ظرف ۱۵ دقیقه وارد کنید.'
+      );
+      verifyPreview.hidden = true;
+    } else if (v.previewCode) {
+      desc.textContent = tr(
+        'Your account is created! SMTP email delivery is not configured yet—use the test verification code below to verify your email.',
+        'حساب کاربری شما ساخته شد! چون کلید SMTP هنوز تنظیم نشده است، برای تایید ایمیل از کد آزمایشی زیر استفاده کنید.'
+      );
+      verifyPreviewCode.textContent = v.previewCode;
+      verifyPreview.hidden = false;
+    }
+    verifyCodeInput.focus();
+  }
+
+  /* ── form submit (Sign In / Register) ──────────────────────────── */
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!identifierOk() || !pw.value || !regPhoneOk()) {
+      if (!identifierOk()) fEmail.classList.add('is-error');
+      if (!regPhoneOk() && fPhone) fPhone.classList.add('is-error');
+      if (!pw.value) fPw.classList.add('is-error');
+      wiz.classList.remove('shake'); void wiz.offsetWidth; wiz.classList.add('shake');
+      var targetEl = !identifierOk() ? email : !regPhoneOk() ? regPhoneEl : pw;
+      targetEl.focus();
+      return;
+    }
+    submit.classList.add('is-loading');
+    submit.querySelector('.lbl').textContent = registering
+      ? tr('Creating account…', 'در حال ساخت حساب…')
+      : tr('Signing in…', 'در حال ورود…');
+
+    var extra = registering ? {
+      displayName: displayNameEl ? displayNameEl.value.trim() : '',
+      phone: regPhoneEl ? regPhoneEl.value.trim() : '',
+      accountType: selectedAccountType,
+      organizationName: selectedAccountType === 'organization' && orgNameEl ? orgNameEl.value.trim() : '',
+      roleTitle: selectedAccountType === 'organization' && roleTitleEl ? roleTitleEl.value.trim() : '',
+      preferredLang: currentLang === 'en' ? 'en' : 'fa'
+    } : {};
+
+    window.JabioAccount.auth(registering ? 'register' : 'login', email.value.trim(), pw.value, extra)
+      .then(function (res) {
+        if (registering) {
+          showEmailVerification(res);
+        } else {
+          signedIn('/account');
+        }
+      })
+      .catch(function (err) {
+        var code = err && err.message;
+        var msg = code === 'invalid_credentials'
+          ? tr('Incorrect email/phone or password.', 'ایمیل/شماره موبایل یا رمز عبور نادرست است.')
+          : code === 'account_exists'
+            ? tr('An account with this email already exists.', 'این ایمیل قبلاً ثبت شده است.')
+            : code === 'phone_exists'
+              ? tr('This mobile number is already linked to another account.', 'این شماره موبایل قبلاً برای حساب دیگری ثبت شده است.')
+              : code === 'invalid_phone'
+                ? tr('Enter a valid Iranian mobile number (e.g. 09123456789).', 'شماره موبایل معتبر وارد کنید (مثلاً 09123456789).')
+                : code === 'invalid_registration'
+                  ? tr('Enter a valid email and a strong password (min 10 chars, not numbers-only).', 'ایمیل معتبر و رمز عبور حداقل ۱۰ کاراکتری (غیرعددی و غیرمعمول) وارد کنید.')
+                  : code === 'rate_limited'
+                    ? tr('Too many attempts. Please wait a few minutes.', 'تعداد تلاش‌ها زیاد بوده است. چند دقیقه دیگر تلاش کنید.')
+                    : tr('Account service is unavailable. Please try again.', 'سرویس حساب کاربری در دسترس نیست. دوباره تلاش کنید.');
+        fail(msg);
+      });
+  });
+
+  /* ── inline email verification form ────────────────────────────── */
+  verifyForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var code = toLatinDigits(verifyCodeInput.value).replace(/\s+/g, '');
+    if (!/^\d{6}$/.test(code)) {
+      verifyNotice.classList.remove('ok');
+      verifyNotice.textContent = tr('Enter the 6-digit verification code.', 'کد تایید ۶ رقمی را کامل وارد کنید.');
+      return;
+    }
+    window.JabioAccount.confirmVerification('email', code)
+      .then(function () {
+        verifyNotice.classList.add('ok');
+        verifyNotice.textContent = tr('Email verified! Opening your profile…', 'ایمیل شما تایید شد! در حال انتقال به پروفایل…');
+        signedIn('/account');
+      })
+      .catch(function (err) {
+        verifyNotice.classList.remove('ok');
+        verifyNotice.textContent = err.message === 'expired_code'
+          ? tr('This code has expired. Request a new one.', 'کد منقضی شده است؛ کد جدید درخواست کنید.')
+          : tr('Invalid verification code. Try again.', 'کد تایید نادرست است. دوباره بررسی کنید.');
+      });
+  });
+
+  $('verifyResend').addEventListener('click', function () {
+    var btn = $('verifyResend');
+    btn.disabled = true;
+    window.JabioAccount.requestVerification('email')
+      .then(function (res) {
+        verifyNotice.classList.add('ok');
+        if (res && res.previewCode) {
+          verifyPreviewCode.textContent = res.previewCode;
+          verifyPreview.hidden = false;
+          verifyNotice.textContent = tr('New test verification code generated.', 'کد تایید جدید ایجاد شد.');
+        } else {
+          verifyNotice.textContent = tr('A new verification code was sent to your email.', 'کد تایید جدید به ایمیل شما ارسال شد.');
+        }
+      })
+      .catch(function () {
+        verifyNotice.classList.remove('ok');
+        verifyNotice.textContent = tr('Could not resend code. Please wait a moment.', 'ارسال مجدد کد انجام نشد. کمی بعد تلاش کنید.');
+      })
+      .finally(function () { btn.disabled = false; });
+  });
+
+  /* ── Real Google Verification via Firebase Auth Popup ──────────── */
+  $('btnGoogle').addEventListener('click', function () {
+    var gBtn = $('btnGoogle');
+    gBtn.disabled = true;
+    notice.textContent = '';
+    notice.classList.remove('ok');
+    var lbl = $('googleLbl');
+    var prevTxt = lbl.textContent;
+    lbl.textContent = tr('Opening Google verification…', 'در حال اتصال به پنجره تایید گوگل…');
+
+    var overrides = registering ? {
+      accountType: selectedAccountType,
+      organizationName: selectedAccountType === 'organization' && orgNameEl ? orgNameEl.value.trim() : '',
+      roleTitle: selectedAccountType === 'organization' && roleTitleEl ? roleTitleEl.value.trim() : ''
+    } : {};
+
+    window.JabioAccount.signInWithGoogle(overrides)
+      .then(function () {
+        signedIn('/account');
+      })
+      .catch(function (err) {
+        gBtn.disabled = false;
+        lbl.textContent = prevTxt;
+        var code = (err && (err.code || err.message)) || '';
+        if (String(code).indexOf('popup-closed-by-user') >= 0 || String(code).indexOf('cancelled-popup-request') >= 0) {
+          notice.textContent = tr('Google verification window was closed before completing sign-in.', 'پنجره تایید گوگل پیش از تکمیل ورود بسته شد.');
+        } else if (String(code).indexOf('popup-blocked') >= 0) {
+          notice.textContent = tr('Your browser blocked the Google popup. Allow popups and try again.', 'مرورگر پنجره بازشو گوگل را مسدود کرد؛ لطفاً اجازه Popup را فعال کرده و دوباره تلاش کنید.');
+        } else {
+          notice.textContent = tr('Google verification could not be completed. Please try again.', 'تایید حساب گوگل انجام نشد. لطفاً دوباره تلاش کنید.');
+        }
+        wiz.classList.remove('shake'); void wiz.offsetWidth; wiz.classList.add('shake');
+      });
+  });
+
+  /* ── language ──────────────────────────────────────────────────── */
+  var langOverlay = $('langOverlay');
+  var langToggleBtn = $('langToggleBtn');
+  var langLabel = $('langLabel');
+  var htmlEl = document.documentElement;
+
+  function applyModeLabels() {
+    var isFA = currentLang === 'fa';
+    var emailLbl = $('emailLabel');
+    var emailMsg = $('email-msg');
+    if (registering) {
+      emailLbl.setAttribute('data-en', 'Email address');
+      emailLbl.setAttribute('data-fa', 'آدرس ایمیل');
+      emailLbl.textContent = isFA ? 'آدرس ایمیل' : 'Email address';
+      emailMsg.setAttribute('data-en', 'Enter a valid email address');
+      emailMsg.setAttribute('data-fa', 'یک آدرس ایمیل معتبر وارد کنید');
+      emailMsg.textContent = isFA ? 'یک آدرس ایمیل معتبر وارد کنید' : 'Enter a valid email address';
+      email.type = 'email';
+      email.placeholder = isFA ? 'name@example.com' : 'your@email.com';
+    } else {
+      emailLbl.setAttribute('data-en', 'Email or phone number');
+      emailLbl.setAttribute('data-fa', 'ایمیل یا شماره موبایل');
+      emailLbl.textContent = isFA ? 'ایمیل یا شماره موبایل' : 'Email or phone number';
+      emailMsg.setAttribute('data-en', 'Enter a valid email or mobile number');
+      emailMsg.setAttribute('data-fa', 'ایمیل یا شماره موبایل معتبر وارد کنید');
+      emailMsg.textContent = isFA ? 'ایمیل یا شماره موبایل معتبر وارد کنید' : 'Enter a valid email or mobile number';
+      email.type = 'text';
+      email.placeholder = isFA ? 'ایمیل یا شماره موبایل (0912...)' : 'your@email.com or 0912...';
+    }
+    if (displayNameEl) displayNameEl.placeholder = isFA ? 'مثلاً علی رضایی' : 'e.g. Ali Rezaei';
+    if (orgNameEl) orgNameEl.placeholder = isFA ? 'مثلاً کافه لمیز / گروه توسعه ...' : 'e.g. Lamiz Coffee';
+    if (roleTitleEl) roleTitleEl.placeholder = isFA ? 'مثلاً مدیر توسعه شعب' : 'e.g. Expansion Manager';
+    pw.placeholder = '••••••••';
+  }
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('ga_lang', lang);
+    var isFA = lang === 'fa';
+    htmlEl.lang = lang; htmlEl.dir = isFA ? 'rtl' : 'ltr';
+    langLabel.textContent = isFA ? 'FA' : 'EN';
+    document.querySelectorAll('[data-en]').forEach(function (el) {
+      var t = isFA ? el.getAttribute('data-fa') : el.getAttribute('data-en');
+      if (t) el.textContent = t;
+    });
+    htmlEl.style.fontFamily = isFA ? "'Vazirmatn','Poppins',sans-serif" : '';
+    document.querySelectorAll('.lang-option').forEach(function (o) {
+      o.classList.toggle('active', o.getAttribute('data-lang') === lang);
+    });
+    applyModeLabels();
+  }
+
+  langToggleBtn.addEventListener('click', function (e) {
+    e.stopPropagation();
+    var open = langOverlay.classList.toggle('open');
+    langToggleBtn.setAttribute('aria-expanded', String(open));
+  });
+  $('langBackdrop').addEventListener('click', function () {
+    langOverlay.classList.remove('open');
+    langToggleBtn.setAttribute('aria-expanded', 'false');
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { langOverlay.classList.remove('open'); langToggleBtn.setAttribute('aria-expanded', 'false'); }
+  });
+  document.querySelectorAll('.lang-option').forEach(function (opt) {
+    opt.addEventListener('click', function () {
+      applyLang(opt.getAttribute('data-lang'));
+      langOverlay.classList.remove('open');
+      langToggleBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* ── forgot password: carry email or phone value ───────────────── */
+  $('forgot').addEventListener('click', function (e) {
+    var v = email.value.trim();
+    if (v) {
+      e.preventDefault();
+      var ch = isPhoneLike(v) ? 'phone' : 'email';
+      location.href = '/forgot-password?channel=' + ch + '&identifier=' + encodeURIComponent(v);
+    }
+  });
+
+  /* ── activate registration mode if ?register=1 ─────────────────── */
+  if (registering) {
+    document.querySelectorAll('.reg-only').forEach(function (el) {
+      if (el.id !== 'orgFields') el.hidden = false;
+    });
+    var heading = document.querySelector('.heading h1');
+    var prompt = $('authPrompt');
+    heading.setAttribute('data-en', 'CREATE ACCOUNT');
+    heading.setAttribute('data-fa', 'ساخت حساب کاربری');
+    prompt.innerHTML =
+      '<span data-en="Already have an account?" data-fa="حساب کاربری دارید؟">Already have an account?</span> ' +
+      '<a class="btn-tonal btn-xs" href="login.html"><span class="lbl" data-en="Sign in" data-fa="ورود">Sign in</span></a>';
+    submit.querySelector('.lbl').setAttribute('data-en', 'Create account');
+    submit.querySelector('.lbl').setAttribute('data-fa', 'ساخت حساب کاربری');
+    $('googleLbl').setAttribute('data-en', 'Sign up & verify with Google');
+    $('googleLbl').setAttribute('data-fa', 'ثبت‌نام و تایید با حساب گوگل');
+    pw.autocomplete = 'new-password';
+  }
+
+  applyLang(currentLang);
+
+  /* ── prefill from ?email= or ?identifier= ──────────────────────── */
+  try {
+    var q = new URLSearchParams(location.search);
+    var pre = q.get('identifier') || q.get('email');
+    if (pre) email.value = pre;
+  } catch (e) {}
+
+  setTimeout(validate, 250);
+})();
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>
+

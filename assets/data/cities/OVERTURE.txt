@@ -1,0 +1,3 @@
+Some places in these files come from Overture Maps (release 2026-10-21.0): https://overturemaps.org
+Licences: CDLA-Permissive-2.0 (Meta, Microsoft), Apache-2.0 (Foursquare), CC0-1.0 (AllThePlaces).
+Overture data (c) Overture Maps Foundation and its contributing sources. The rest of the places are (c) OpenStreetMap contributors, ODbL.
